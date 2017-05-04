@@ -25,6 +25,7 @@
 class Utente{
 	private $id;
 	private $username;
+	private $password;
 	private $nome;
 	private $cognome;
 	private $data_nascita;
@@ -38,6 +39,10 @@ class Utente{
 	
 	public function getUsername(){
 		return $this->username;
+	}
+	
+	public function getPassword(){
+		return $this->password;
 	}
 	
 	public function getNome(){
@@ -64,7 +69,7 @@ class Utente{
 		return $this->id_ruolo;
 	}
 	
-	///////////////////////////////////////////
+///////////////////////////////////////////
 	
 	public function setId($v){
 		$this->id = $v;
@@ -72,6 +77,10 @@ class Utente{
 	
 	public function setUsername($v){
 		$this->username = $v;
+	}
+	
+	public function setPassword($v){
+		$this->password = $v;
 	}
 	
 	public function setNome($v){

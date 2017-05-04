@@ -28,7 +28,7 @@ if(!$link){
 }
 
 //make foo the current db
-$db_selected = mysql_select_db("root",$link);
+$db_selected = mysql_select_db("", $link);
 if(!$db_selected){
 	die("Database non agibile: ".mysql_error());
 }
