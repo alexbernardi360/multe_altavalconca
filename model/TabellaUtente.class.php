@@ -25,9 +25,10 @@
 class TabellaUtente{
 	
 	public static function save($utente){
-		$query = sprintf("INSERT INTO Utenti(username, nome, cognome, data_nascita, location_img, id_gruppo, id_ruolo)
-							VALUES('%s', '%s', '%s', '%s', '%s', %d, %d);",
+		$query = sprintf("INSERT INTO Utenti(username, password, nome, cognome, data_nascita, location_img, id_gruppo, id_ruolo)
+							VALUES('%s', '%s', '%s', '%s', '%s', '%s', %d, %d);",
 							$utente->getUsername(),
+							$utente->getPassword(),
 							$utente->getNome(),
 							$utente->getCognome(),
 							$utente->getData_nascita(),
@@ -36,9 +37,8 @@ class TabellaUtente{
 							$utente->getId_ruolo());
 							
 		mysql_query($query);
-		if(mysql_affected_rows()!=1){
+		if(mysql_affected_rows()!=1)
 			print(mysql_error());
-		}
 	}
 	
 	public static function update($utente){
@@ -52,9 +52,14 @@ class TabellaUtente{
 							$utente->getId_ruolo());
 							
 		mysql_query($query);
-		if(mysql_affected_rows()!=1){
+		if(mysql_affected_rows()!=1)
 			print (mysql_error());
-		}
 	}
 	
+	public static function delete($utente){
+		$query = sprintf("DELETE FROM Utenti WHERE id=%d", $utente->getId());
+		$result = mysql_query($query);
+	}
+
+}
 ?>
