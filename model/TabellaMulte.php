@@ -1,6 +1,6 @@
 <?php
 /*
- * TabellaUtente.class.php
+ * TabellaMulte.php
  * 
  * Copyright 2017 Alessandro Bernardi <alessandro@Alessandro>
  * 
@@ -22,18 +22,16 @@
  * 
  */
 
-class TabellaUtente{
+class TabellaMulte{
 	
-	public static function save($utente){
-		$query = sprintf("INSERT INTO Utenti(username, nome, cognome, data_nascita, location_img, id_gruppo, id_ruolo)
-							VALUES('%s', '%s', '%s', '%s', '%s', %d, %d);",
-							$utente->getUsername(),
-							$utente->getNome(),
-							$utente->getCognome(),
-							$utente->getData_nascita(),
-							$utente->getLocation_img(),
-							$utente->getId_gruppo(),
-							$utente->getId_ruolo());
+	public static function save($multa){
+		$query = sprintf("INSERT INTO Multe(data, valore, pagato, note, id_utente)
+							VALUES('%s', %f, %b, '%s', %d);",
+							$multa->getData(),
+							$multa->getValore(),
+							$multa->getPagato(),
+							$multa->getNote(),
+							$multa->getId_utente();
 							
 		mysql_query($query);
 		if(mysql_affected_rows()!=1){
@@ -41,15 +39,13 @@ class TabellaUtente{
 		}
 	}
 	
-	public static function update($utente){
-		$query = sprintf("UPDATE Utenti SET username='%s', nome='%s', cognome='%s', data_nascita='%s', location_img='%s', id_gruppo=%d, id_ruolo=%d WHERE id=%d;",
-							$utente->getUsername(),
-							$utente->getNome(),
-							$utente->getCognome(),
-							$utente->getData_nascita(),
-							$utente->getLocation_img(),
-							$utente->getId_gruppo(),
-							$utente->getId_ruolo());
+	public static function update($multa){
+		$query = sprintf("UPDATE Multe SET data='%s', valore=%f, pagato=%b, note=%s, id_utente=%d WHERE id=%d;",
+							$multa->getData(),
+							$multa->getValore(),
+							$multa->getPagato(),
+							$multa->getNote(),
+							$multa->getId_utente();
 							
 		mysql_query($query);
 		if(mysql_affected_rows()!=1){
@@ -57,22 +53,22 @@ class TabellaUtente{
 		}
 	}
 	
-	public static function delete($utente){
-		$query = sprintf("DELETE FROM Utenti WHERE id=%d;",$utente->getId());
+	public static function delete($multa){
+		$query = sprintf("DELETE FROM Multe WHERE id=%d;",$multa->getId());
 		mysql_query($query);
 	}	
 	
 	public static function getAll(){
-		$query = sprintf("SELECT * FROM Utenti;");
+		$query = sprintf("SELECT * FROM Multe;");
 		$result = mysql_query($query);
-		$utenti = array();
+		$multe = array();
 		if($result){
 			while($row = mysql_fetch_array($result)){
-				$utente = new Utente();
-				$utente->setId($row["id"]);
-				$utenti[] = $utente;
+				$multa = new Multa();
+				$multa->setId($row["id"]);
+				$multe[] = $multa;
 			}
-			return $utenti;
+			return $multe;
 		}else{
 			return null;
 		}
