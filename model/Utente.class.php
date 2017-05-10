@@ -106,6 +106,20 @@ class Utente{
 	public function setId_ruolo($v){
 		$this->id_ruolo = $v;
 	}
-
+	
+///////////////////////////////////////////
+	
+	public function save(){
+		TabellaUtente::save($this);
+	}
+	
+	public function update(){
+		TabellaUtente::update($this);
+	}
+	
+	public function delete(){
+		TabellaUtente::delete($this);
+	}
+		
 } 
 ?>
