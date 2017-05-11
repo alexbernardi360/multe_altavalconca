@@ -79,4 +79,5 @@ class Multe{
 	public function setId_utente($v){
 		$this->id_utente = $v;
 	}
+}
 ?>
