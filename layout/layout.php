@@ -89,7 +89,7 @@
 			  </ul>
 			</nav>
 			<article>
-			  <?php echo $content?>
+			  <?php echo $content; ?>
 			</article>
 		</div>
 	</body>

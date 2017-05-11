@@ -51,11 +51,11 @@
 	switch($controller){
 		
 		case 'multa':
-			require('../controller/persona/controller.php');
+			require('../controller/multe/controller.php');
 			break;
 		
-		case 'disciplina':
-			require('../controller/disciplina/controller.php');
+		case 'utenti':
+			require('../controller/utenti/controller.php');
 			break;
 			
 		case 'nazione':
