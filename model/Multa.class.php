@@ -22,7 +22,7 @@
  * 
  */
 
-class Multe{
+class Multa{
 	private $id;
 	private $data;
 	private $valore;
@@ -54,6 +54,10 @@ class Multe{
 		return $this->id_utente;
 	}
 	
+	public function getUtente(){
+		 return TabellaUtente::getById($this->id_utente);
+	 }
+	
 ///////////////////////////////////////////
 	
 	public function setId($v){
@@ -78,6 +82,19 @@ class Multe{
 	
 	public function setId_utente($v){
 		$this->id_utente = $v;
+	}
+///////////////////////////////////////////
+
+	public function save(){
+		TabellaMulte::save($this);
+	}
+	
+	public function update(){
+		TabellaMulte::update($this);
+	}
+	
+	public function delete(){
+		TabellaMulte::delete($this);
 	}
 }
 ?>

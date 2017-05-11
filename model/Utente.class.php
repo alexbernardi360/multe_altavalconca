@@ -32,6 +32,8 @@ class Utente{
 	private $location_img;
 	private $id_gruppo;
 	private $id_ruolo;
+	
+	private $saldo;
 	 
 	public function getId(){
 		return $this->id;
@@ -69,6 +71,11 @@ class Utente{
 		return $this->id_ruolo;
 	}
 	
+	public function getSaldo(){
+		return $this->saldo;
+	}
+	
+	
 ///////////////////////////////////////////
 	
 	public function setId($v){
@@ -105,6 +112,10 @@ class Utente{
 	
 	public function setId_ruolo($v){
 		$this->id_ruolo = $v;
+	}
+	
+	public function setSaldo($v){
+		$this->saldo = $v;
 	}
 	
 ///////////////////////////////////////////

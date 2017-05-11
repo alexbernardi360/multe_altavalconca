@@ -62,13 +62,21 @@ class TabellaUtente{
 	}	
 	
 	public static function getAll(){
-		$query = sprintf("SELECT * FROM Utenti;");
+		$query = sprintf("SELECT * FROM Utenti WHERE NOT id=1;");   //diverso da 1 perchè 1 è l'utente "root"
 		$result = mysql_query($query);
 		$utenti = array();
 		if($result){
 			while($row = mysql_fetch_array($result)){
 				$utente = new Utente();
 				$utente->setId($row["id"]);
+				$utente->setUsername($row["username"]);
+			//	$utente->setPassword($row["password"]);
+				$utente->setNome($row["nome"]);
+				$utente->setCognome($row["cognome"]);
+				$utente->setData_nascita($row["data_nascita"]);
+				$utente->setLocation_img($row["location_img"]);
+				$utente->setId_gruppo($row["id_gruppo"]);
+				$utente->setId_ruolo($row["id_ruolo"]);
 				$utenti[] = $utente;
 			}
 			return $utenti;
@@ -85,6 +93,26 @@ class TabellaUtente{
 			return FALSE;
 		}else
 			return TRUE;
+	}
+	
+	public static function getById($id){
+		$query = sprintf("SELECT * FROM Utenti where id=%d;",$id);
+		$result = mysql_query($query);
+		if(mysql_affected_rows()!=1){
+			print "Errore" . mysql_error();
+		}
+		$row = mysql_fetch_array($result);
+		$utente = new Utente();
+		$utente->setId($row["id"]);
+		$utente->setUsername($row["username"]);
+	//	$utente->setPassword($row["password"]);
+		$utente->setNome($row["nome"]);
+		$utente->setCognome($row["cognome"]);
+		$utente->setData_nascita($row["data_nascita"]);
+		$utente->setLocation_img($row["location_img"]);
+		$utente->setId_gruppo($row["id_gruppo"]);
+		$utente->setId_ruolo($row["id_ruolo"]);
+		return $utente;
 	}
 }
 ?>

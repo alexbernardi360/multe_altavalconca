@@ -73,5 +73,21 @@ class TabellaMulte{
 			return null;
 		}
 	}
+	
+	public static function getNonPagati(){
+		$query = sprintf("SELECT * FROM Multe WHERE pagato=0;");
+		$result = mysql_query($query);
+		$multe = array();
+		if($result){
+			while($row = mysql_fetch_array($result)){
+				$multa = new Multa();
+				$multa->setId($row["id"]);
+				$multe[] = $multa;
+			}
+			return $multe;
+		}else{
+			return null;
+		}
+	}
 }
 ?>
