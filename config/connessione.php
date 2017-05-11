@@ -22,6 +22,7 @@
  * 
  */
 
+$ciao='ciao';
 $link = mysql_connect("localhost", "root", "tastiera");
 if(!$link)
 	die("Non connesso: ".mysql_error());

@@ -74,14 +74,16 @@
 	<body>
 		<div class="container">
 			<header>
-			   <h1>Persone, Discipline e Nazioni</h1>
+			   <h1>Multe Altavalconca Juniores</h1>
 			</header>
 			<nav>
 			  <ul>
 				<?php if($auth):?>
 				<li><a href="index.php?controller=multa&action=list">Multe</a></li>
-				<li><a href="index.php?controller=disciplina&action=list">Discipline</a></li>
+
+<!--				<li><a href="index.php?controller=disciplina&action=list">Discipline</a></li>
 				<li><a href="index.php?controller=nazione&action=list">Nazione</a></li>
+-->			
 				<li><a href="index.php?controller=login&action=doLogout">Logout</a></li>
 				<?php endif;?>
 			  </ul>

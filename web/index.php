@@ -24,9 +24,9 @@
 
 	require('../config/connessione.php');
 	require('../model/Multa.class.php');
-	require('../model/TabellaMulta.php');
+	require('../model/TabellaMulta.class.php');
 	require('../model/Utente.class.php');
-	require('../model/TabellaUtente.php');
+	require('../model/TabellaUtente.class.php');
 	require('../lib/lib.php');
 
 	session_start();

@@ -31,7 +31,7 @@ class TabellaMulte{
 							$multa->getValore(),
 							$multa->getPagato(),
 							$multa->getNote(),
-							$multa->getId_utente();
+							$multa->getId_utente());
 							
 		mysql_query($query);
 		if(mysql_affected_rows()!=1){
@@ -45,7 +45,7 @@ class TabellaMulte{
 							$multa->getValore(),
 							$multa->getPagato(),
 							$multa->getNote(),
-							$multa->getId_utente();
+							$multa->getId_utente());
 							
 		mysql_query($query);
 		if(mysql_affected_rows()!=1){
@@ -73,4 +73,5 @@ class TabellaMulte{
 			return null;
 		}
 	}
+}
 ?>
