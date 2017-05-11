@@ -22,19 +22,51 @@
  * 
  */
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	require('../config/connessione.php');
+	require('../model/Multa.class.php');
+	require('../model/TabellaMulta.php');
+	require('../model/Utente.class.php');
+	require('../model/TabellaUtente.php');
+	require('../lib/lib.php');
 
-<head>
-	<title>senza nome</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="generator" content="Geany 1.24.1" />
-</head>
+	session_start();
+	if(isset($_SESSION['username'])){
+		$username = $_SESSION['username'];
+		$auth = true;
+	}else{
+		$auth=false;
+	}
 
-<body>
+	if(!isset($_REQUEST['controller'])){
+		$controller = 'multa';
+	}else{
+		$controller = $_REQUEST['controller'];
+	}
 	
-</body>
+	if(!$auth){
+		$controller =  'login';
+		$action = 'login';
+	}
+	
+	switch($controller){
+		
+		case 'multa':
+			require('../controller/persona/controller.php');
+			break;
+		
+		case 'disciplina':
+			require('../controller/disciplina/controller.php');
+			break;
+			
+		case 'nazione':
+			require('../controller/nazione/controller.php');
+			break;
+		
+		case 'login':
+			require('../controller/login/controller.php');
+			break;
+	}
+	
+	require ('../layout/layout.php');
 
-</html>
+?>

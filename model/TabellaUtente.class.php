@@ -57,7 +57,6 @@ class TabellaUtente{
 	}
 	
 	public static function delete($utente){
-<<<<<<< HEAD
 		$query = sprintf("DELETE FROM Utenti WHERE id=%d;",$utente->getId());
 		mysql_query($query);
 	}	
@@ -77,11 +76,15 @@ class TabellaUtente{
 			return null;
 		}
 	}
-=======
-		$query = sprintf("DELETE FROM Utenti WHERE id=%d", $utente->getId());
-		$result = mysql_query($query);
+	
+	public static function getByUsernameAndPassword($user, $pass){
+		$query=sprintf("SELECT * FROM Utenti WHERE username='%s' AND password='%s';", $user, sha1($pass));
+		mysql_query($query);
+		if(mysql_affected_rows()!=1){
+			print('Errore, credenziali errate');
+			return FALSE;
+		}else
+			return TRUE;
 	}
-
 }
->>>>>>> 13e0f445ee2a21a459354ea26bc0b75b3f499342
 ?>
