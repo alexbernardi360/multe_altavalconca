@@ -129,8 +129,8 @@ class TabellaUtente{
 			while($row = mysql_fetch_array($result)){
 				$utente = new Utente();
 				$utente->setId($row["id"]);
-				$utente->setNome($row["nome"]);
 				$utente->setCognome($row["cognome"]);
+				$utente->setNome($row["nome"]);
 				$utente->setSaldo($row["saldo"]);
 				$utenti[] = $utente;
 			}
