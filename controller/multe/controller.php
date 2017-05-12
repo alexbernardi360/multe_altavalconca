@@ -31,12 +31,12 @@
 		
 		case 'list':  //solo multe da pagare (pagato = false)
 			$utenti = TabellaUtente::getAllWithSaldo();
-			$content = get_include_contents("../controller/multe/template/list.php");
+			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
 		
 		case 'new':
 			$utenti = TabellaUtente::getAll();
-			$content = get_include_contents("../controller/multe/template/form.php");
+			$content = get_include_contents("../controller/multe/templates/form.php");
 			break;
 			
 		case 'create':
@@ -48,7 +48,7 @@
 			$multa->setId_utente($_POST['id_utente']);
 			$multa->save();
 			$persone = TabellaMulte::getAll();
-			$content = get_include_contents("../controller/multa/template/list.php");
+			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
 	
 	}
