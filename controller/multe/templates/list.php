@@ -55,7 +55,7 @@
 			</table>
 			<br>
 			<br>
-			<a href="index.php?controller=multe&action=new">Aggiungi Multa</a>
+			<a href="index.php?controller=multa&action=new">Aggiungi Multa</a>
 		</center>
 	</body>
 
