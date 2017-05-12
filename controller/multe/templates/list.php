@@ -50,7 +50,6 @@
 					<td><?php echo $utente->getCognome(); ?></td>
 					<td><?php echo $utente->getSaldo(); ?>
 					<td><a href="index.php?controller=multe&action=paga_tutto&id=<?php echo $utente->getId()?>">Paga tutto</a></td>
-					<!-- <td><a href="index.php?controller=multe&action=show&id=<?php echo $utente->getId()?>&id_disciplina=<?php echo $persona->getIdDisciplina()?>">Vedi</a></td> -->
 				</tr>
 				<?php endforeach;?>
 			</table>
