@@ -37,7 +37,7 @@
 
 	<body>
 		<center>
-		<form action="?controller=multa" method="POST">
+		<form action="index.php?controller=multa" method="POST">
 			<input type="hidden" name="action" value="<?php echo $multa->getId() ? 'update' : 'create' ?>">
 			<input type="hidden" name="id" value="<?php echo $multa->getId() ?>">
 			<center>
@@ -57,11 +57,11 @@
 							<input type="radio" name="pagato" value="0"checked>no
 						</td>
 					</tr>
-					</td>
+					<tr>
 						<td>Nome:</td>
 						<td><textarea rows="2" cols="30" name="note"></textarea></td>
 					</tr>
-					<td>
+					<tr>
 						<td>Persona:</td>
 						<td>
 							<select name="id_utente">
@@ -70,8 +70,7 @@
 								<?php endforeach; ?>
 							</select>
 						</td>
-					</td>
-					
+					</tr>
 				</table>
 			</center>
 			<input type="submit" value="Aggiungi">
