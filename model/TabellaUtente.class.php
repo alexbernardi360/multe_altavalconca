@@ -117,7 +117,7 @@ class TabellaUtente{
 	
 	
 	public static function getAllWithSaldo(){
-		$query = sprintf("SELECT Utwnti.id, Utenti.cognome, Utenti.nome, SUM(Multe.valore) AS saldo
+		$query = sprintf("SELECT Utenti.id, Utenti.cognome, Utenti.nome, SUM(Multe.valore) AS saldo
 							FROM Utenti
 							JOIN Multe ON Multe.id_utente = Utenti.id
 							WHERE Multe.pagato = 0

@@ -23,17 +23,17 @@
  */
 
 class Utente{
-	private $id;
-	private $username;
-	private $password;
-	private $nome;
-	private $cognome;
-	private $data_nascita;
-	private $location_img;
-	private $id_gruppo;
-	private $id_ruolo;
+	private $id = null;
+	private $username = null;
+	private $password = null;
+	private $nome = null;
+	private $cognome = null;
+	private $data_nascita = null;
+	private $location_img = null;
+	private $id_gruppo = null;
+	private $id_ruolo = null;
 	
-	private $saldo;
+	private $saldo = null;
 	 
 	public function getId(){
 		return $this->id;
