@@ -114,5 +114,30 @@ class TabellaUtente{
 		$utente->setId_ruolo($row["id_ruolo"]);
 		return $utente;
 	}
+	
+	
+	public static function getAllWithSaldo(){
+		$query = sprintf("SELECT Utenti.cognome, Utenti.nome, SUM(Multe.valore) AS saldo
+							FROM Utenti
+							JOIN Multe ON Multe.id_utente = Utenti.id
+							WHERE Multe.pagato = 0
+							GROUP BY Utenti.cognome, Utenti.nome
+							ORDER BY saldo;"); 
+		$result = mysql_query($query);
+		$utenti = array();
+		if($result){
+			while($row = mysql_fetch_array($result)){
+				$utente = new Utente();
+				$utente->setId($row["id"]);
+				$utente->setNome($row["nome"]);
+				$utente->setCognome($row["cognome"]);
+				$utente->setSaldo($row["saldo"]);
+				$utenti[] = $utente;
+			}
+			return $utenti;
+		}else{
+			return null;
+		}
+	}
 }
 ?>

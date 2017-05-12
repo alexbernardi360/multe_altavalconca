@@ -30,7 +30,7 @@
 	switch ($action){
 		
 		case 'list':  //solo multe da pagare (pagato = false)
-			$multe = TabellaMulte::getNonPagati();
+			$utenti = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/template/list.php");
 			break;
 		
