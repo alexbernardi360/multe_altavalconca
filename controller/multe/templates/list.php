@@ -49,14 +49,14 @@
 					<td><?php echo $utente->getNome(); ?></td>
 					<td><?php echo $utente->getCognome(); ?></td>
 					<td><?php echo $utente->getSaldo(); ?>
-					<td><a href="?controller=multe&action=paga_tutto&id=<?php echo $utente->getId()?>">Paga tutto</a></td>
-					<td><a href="?controller=multe&action=show&id=<?php echo $utente->getId()?>&id_disciplina=<?php echo $persona->getIdDisciplina()?>">Vedi</a></td>
+					<td><a href="index.php?controller=multe&action=paga_tutto&id=<?php echo $utente->getId()?>">Paga tutto</a></td>
+					<td><a href="index.php?controller=multe&action=show&id=<?php echo $utente->getId()?>&id_disciplina=<?php echo $persona->getIdDisciplina()?>">Vedi</a></td>
 				</tr>
 				<?php endforeach;?>
 			</table>
 			<br>
 			<br>
-			<a href="?action=new">Aggiungi Multa</a>
+			<a href="index.php?controller=multe&action=new">Aggiungi Multa</a>
 		</center>
 	</body>
 
