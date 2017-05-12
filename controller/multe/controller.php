@@ -35,6 +35,7 @@
 			break;
 		
 		case 'new':
+			$multa = new Multa();
 			$utenti = TabellaUtente::getAll();
 			$content = get_include_contents("../controller/multe/templates/form.php");
 			break;
