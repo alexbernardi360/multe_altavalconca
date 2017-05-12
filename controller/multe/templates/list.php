@@ -48,7 +48,7 @@
 				<tr>
 					<td><?php echo $utente->getNome(); ?></td>
 					<td><?php echo $utente->getCognome(); ?></td>
-					<td><?php echo $utente->getSaldo(); ?></td>
+					<td><?php echo $utente->getSaldo().'€';?></td>
 					<td><a href="index.php?controller=multe&action=paga_tutto&id=<?php echo $utente->getId()?>">Paga tutto</a></td>
 				</tr>
 				<?php endforeach;?>
