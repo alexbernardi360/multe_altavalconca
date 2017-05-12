@@ -48,7 +48,7 @@
 			$multa->setNote($_POST['note']);
 			$multa->setId_utente($_POST['id_utente']);
 			$multa->save();
-			$persone = TabellaMulte::getAll();
+			$utenti = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
 	
