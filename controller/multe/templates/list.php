@@ -44,14 +44,18 @@
 					
 					<th colspan="2"><center>Azioni</center></th>
 				</tr>
-				<?php foreach($utenti as $utente):?>    <!-- fare la query per avere nome,cognome,e totale da pagare -->
-				<tr>
-					<td><?php echo $utente->getNome(); ?></td>
-					<td><?php echo $utente->getCognome(); ?></td>
-					<td><?php echo $utente->getSaldo().'€';?></td>
-					<td><a href="index.php?controller=multe&action=paga_tutto&id=<?php echo $utente->getId()?>">Paga tutto</a></td>
-				</tr>
-				<?php endforeach;?>
+				<?php	if($result): ?>
+					<?php while($row = mysql_fetch_array($result)): ?>
+					<?php //foreach($utenti as $utente):?>    <!-- fare la query per avere nome,cognome,e totale da pagare -->
+					<tr>
+						<td><?php echo $row['nome']; ?></td>
+						<td><?php echo $row['cognome']; ?></td>
+						<td><?php echo $row['saldo'].'€'; ?></td>
+						<td><a href="index.php?controller=multe&action=paga_tutto&id=<?php echo $utente->getId()?>">Paga tutto</a></td>
+						<td><a href="index.php?controller=multe&action=vedi_tutto&id=<?php echo $utente->getId()?>">Vedi tutto</a></td>
+					</tr>
+					<?php endwhile; ?>
+				<?php endif; ?>
 			</table>
 			<br>
 			<br>

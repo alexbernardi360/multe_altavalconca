@@ -124,20 +124,7 @@ class TabellaUtente{
 							GROUP BY Utenti.id, Utenti.cognome, Utenti.nome
 							ORDER BY saldo;"); 
 		$result = mysql_query($query);
-		$utenti = array();
-		if($result){
-			while($row = mysql_fetch_array($result)){
-				$utente = new Utente();
-				$utente->setId($row["id"]);
-				$utente->setCognome($row["cognome"]);
-				$utente->setNome($row["nome"]);
-				$utente->setSaldo($row["saldo"]);
-				$utenti[] = $utente;
-			}
-			return $utenti;
-		}else{
-			return null;
-		}
+		return $result;
 	}
 }
 ?>

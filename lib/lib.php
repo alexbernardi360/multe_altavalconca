@@ -31,4 +31,30 @@ function get_include_contents($filename){
 	}
 	return false;
 }
+
+
+	function csvToArray($filepath){
+		 setlocale(LC_ALL, 'en_US.UTF-8');
+		 
+		 if(($handle = fopen($filepath, "r")) !== FALSE){
+			  $nn = 0;
+			  
+			  // legge una riga alla volta fino alla fine del file
+			  while(($data = fgetcsv($handle, 1000, ";")) !== FALSE){
+				   // numero di elementi presenti nella riga letta
+				   $num_elementi = count($data);
+				   // popolamento dell'array
+				   for($x = 0; $x < $num_elementi; $x++){
+						$csvarray[$nn][$x] = $data[$x];
+				   }
+				   $nn++;
+			  }
+			  
+			  fclose($handle);
+		}else{
+			echo "File non trovato";
+		}
+
+		return $csvarray;
+	}
 ?>
