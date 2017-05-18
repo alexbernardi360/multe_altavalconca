@@ -22,15 +22,15 @@
  * 
  */
 
+
 	if(!isset($_REQUEST['action']))
 		$action = 'list';
 	else
 		$action = $_REQUEST['action'];
 		
-	switch ($action){
-		
+	switch ($action){		
 		case 'list':  //solo multe da pagare (pagato = 0)
-			$utenti = TabellaUtente::getAllWithSaldo();
+			$result = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
 		
@@ -48,13 +48,13 @@
 			$multa->setNote($_POST['note']);
 			$multa->setId_utente($_POST['id_utente']);
 			$multa->save();
-			$utenti = TabellaUtente::getAllWithSaldo();
+			$result = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
 			
 		case 'paga_tutto':
 			TabellaMulte::pagaTutto($_REQUEST['id']);
-			$utenti = TabellaUtente::getAllWithSaldo();
+			$result = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
 	

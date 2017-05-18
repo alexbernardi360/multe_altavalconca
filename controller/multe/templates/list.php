@@ -51,8 +51,8 @@
 						<td><?php echo $row['nome']; ?></td>
 						<td><?php echo $row['cognome']; ?></td>
 						<td><?php echo $row['saldo'].'€'; ?></td>
-						<td><a href="index.php?controller=multe&action=paga_tutto&id=<?php echo $row['id']; ?>">Paga tutto</a></td>
-						<td><a href="index.php?controller=multe&action=vedi_tutto&id=<?php echo echo $row['id']; ?>">Vedi tutto</a></td>
+						<td><a href="index.php?controller=multa&action=paga_tutto&id=<?php echo $row['id']; ?>">Paga tutto</a></td>
+						<td><a href="index.php?controller=multa&action=vedi_tutto&id=<?php echo $row['id']; ?>">Vedi tutto</a></td>
 					</tr>
 					<?php endwhile; ?>
 				<?php endif; ?>
