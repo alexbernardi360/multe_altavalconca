@@ -62,7 +62,7 @@ class TabellaUtente{
 	}	
 	
 	public static function getAll(){
-		$query = sprintf("SELECT * FROM Utenti WHERE NOT id=1;");   //diverso da 1 perchè 1 è l'utente "root"
+		$query = sprintf("SELECT * FROM Utenti WHERE NOT id=1 ORDER BY cognome;");   //diverso da 1 perchè 1 è l'utente "root"
 		$result = mysql_query($query);
 		$utenti = array();
 		if($result){
