@@ -22,7 +22,7 @@
  * 
  */
 
-$filepath = '/var/www/html/connessione.csv'
+$filepath = '/var/www/html/config/connessione.csv';
 $array = csvToArray($filepath);
 
 $link = mysql_connect($array[0][0], $array[0][1], $array[0][2]);
