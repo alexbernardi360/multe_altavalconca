@@ -51,6 +51,12 @@
 			$utenti = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
+			
+		case 'paga_tutto':
+			TabellaMulte::pagaTutto($_REQUEST['id']);
+			$utenti = TabellaUtente::getAllWithSaldo();
+			$content = get_include_contents("../controller/multe/templates/list.php");
+			break;
 	
 	}
 ?>

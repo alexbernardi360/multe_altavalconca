@@ -66,7 +66,7 @@
 						<td>
 							<select name="id_utente">
 								<?php foreach($utenti as $utente): ?>
-								<option value="<?php echo $utente->getId() ?>" <?php echo ($multa->getId_utente == $utente->getId()) ? "selected" : "" ?>><?php echo $utente->getCognome().$utente->getNome(); ?> </option>
+								<option value="<?php echo $utente->getId() ?>" <?php echo ($multa->getId_utente == $utente->getId()) ? "selected" : "" ?>><?php echo $utente->getCognome().' '.$utente->getNome(); ?> </option>
 								<?php endforeach; ?>
 							</select>
 						</td>

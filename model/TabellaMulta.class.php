@@ -53,6 +53,23 @@ class TabellaMulte{
 		}
 	}
 	
+	public static function pagaTutto($id_utente){
+		$query = sprintf("UPDATE Multe SET pagato=1 WHERE id_utente='%d';", $id_utente);
+		mysql_query($query);
+		if(mysql_affected_rows()!=1){
+			print('errore pagamento');
+		}
+	}
+	
+	public static function paga($multa){
+		$query = sprintf("UPDATE Multe SET pagato=1 WHERE id='%d';", $multa->getId());
+		mysql_query($query);
+		if(mysql_affected_rows()!=1){
+			print('errore pagamento');
+		}
+	}
+	
+	
 	public static function delete($multa){
 		$query = sprintf("DELETE FROM Multe WHERE id=%d;",$multa->getId());
 		mysql_query($query);
