@@ -33,35 +33,44 @@
 
 	<body>
 		<center>
-			<h1>Elenco persone multate</h1>
-			<br>
-			<br>
-			<table border="3px">
-				<tr>
-					<th><center>Nome</center></th>
-					<th><center>Cognome</center></th>
-					<th><center>Saldo</center></th>
-					
-					<th colspan="2"><center>Azioni</center></th>
-				</tr>
-				<?php	if($result): ?>
-					<?php while($row = mysql_fetch_array($result)): ?>
-					<?php //foreach($utenti as $utente):?>    <!-- fare la query per avere nome,cognome,e totale da pagare -->
+			<?php if(mysql_num_rows($result)): ?>
+				<h1>Elenco persone multate</h1>
+				<br>
+				<br>
+				<table border="3px">			
 					<tr>
-						<td><?php echo $row['nome']; ?></td>
-						<td><?php echo $row['cognome']; ?></td>
-						<td><?php echo $row['saldo'].'€'; ?></td>
-						<td><a href="index.php?controller=multa&action=paga_tutto&id=<?php echo $row['id']; ?>">Paga tutto</a></td>
-						<td><a href="index.php?controller=multa&action=vedi_tutto&id=<?php echo $row['id']; ?>">Vedi tutto</a></td>
+						<th><center>Nome</center></th>
+						<th><center>Cognome</center></th>
+						<th><center>Saldo</center></th>
+						
+						<th colspan="2"><center>Azioni</center></th>
 					</tr>
+<<<<<<< HEAD
 					<?php endwhile; ?>
 				<?php else: ?>
 					<h2><center>Nessuna multa in sospeso</center></h2>
 				<?php endif; ?>
 			</table>
+=======
+					<?php while($row = mysql_fetch_array($result)): ?>
+						<tr>
+							<td><?php echo $row['nome']; ?></td>
+							<td><?php echo $row['cognome']; ?></td>
+							<td><?php echo $row['saldo'].'€'; ?></td>
+							<td><a href="index.php?controller=multa&action=paga_tutto&id=<?php echo $row['id']; ?>">Paga tutto</a></td>
+							<td><a href="index.php?controller=multa&action=show&id=<?php echo $row['id']; ?>">Vedi tutto</a></td>
+						</tr>
+					<?php endwhile; ?>					
+				</table>
+			<?php else: ?>
+				<h1>Nessuna multa in sospeso</h1>
+			<?php endif; ?>
+>>>>>>> 10f44189c58e7fe80c98cb18b2b93403efc7452e
 			<br>
 			<br>
 			<a href="index.php?controller=multa&action=new">Aggiungi Multa</a>
+			<br>
+			<a href="index.php?controller=utenti&action=list">Lista Persone</a>  <!-- da rivedere -->
 		</center>
 	</body>
 
