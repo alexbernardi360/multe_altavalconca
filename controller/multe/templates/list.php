@@ -55,6 +55,8 @@
 						<td><a href="index.php?controller=multa&action=vedi_tutto&id=<?php echo $row['id']; ?>">Vedi tutto</a></td>
 					</tr>
 					<?php endwhile; ?>
+				<?php else: ?>
+					<h2><center>Nessuna multa in sospeso</center></h2>
 				<?php endif; ?>
 			</table>
 			<br>
