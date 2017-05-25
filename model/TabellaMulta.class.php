@@ -34,9 +34,8 @@ class TabellaMulte{
 							$multa->getId_utente());
 							
 		mysql_query($query);
-		if(mysql_affected_rows()!=1){
-			print(mysql_error());
-		}
+		if(mysql_affected_rows()!=1)
+			print(mysql_error()." errore save()"." - ".$query);
 	}
 	
 	public static function update($multa){
@@ -61,8 +60,8 @@ class TabellaMulte{
 		}
 	}
 	
-	public static function paga($multa){
-		$query = sprintf("UPDATE Multe SET pagato=1 WHERE id='%d';", $multa->getId());
+	public static function paga($id){
+		$query = sprintf("UPDATE Multe SET pagato=1 WHERE id='%d';", $id);
 		mysql_query($query);
 		if(mysql_affected_rows()!=1){
 			print('errore pagamento');
@@ -83,12 +82,16 @@ class TabellaMulte{
 			while($row = mysql_fetch_array($result)){
 				$multa = new Multa();
 				$multa->setId($row["id"]);
+				$multa->setData($row["data"]);
+				$multa->setValore($row["valore"]);
+				$multa->setPagato($row["pagato"]);
+				$multa->setNote($row["note"]);
+				$multa->setId_utente($row["id_utente"]);
 				$multe[] = $multa;
 			}
 			return $multe;
-		}else{
+		}else
 			return null;
-		}
 	}
 
 	//da rivedere

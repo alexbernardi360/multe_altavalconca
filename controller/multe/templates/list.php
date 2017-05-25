@@ -42,7 +42,6 @@
 						<th><center>Nome</center></th>
 						<th><center>Cognome</center></th>
 						<th><center>Saldo</center></th>
-						
 						<th colspan="2"><center>Azioni</center></th>
 					</tr>
 					<?php while($row = mysql_fetch_array($result)): ?>

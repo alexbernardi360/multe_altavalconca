@@ -28,7 +28,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 	<head>
-		<link href="/var/www/html/multe_altavalconca/layout/icons/favicon.ico" rel="shortcut icon">
+		<link href="/home/alessandro/Immagini/icons/favicon.ico" rel="shortcut icon">
 		<title>Layout.php</title>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<style>

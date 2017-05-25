@@ -54,7 +54,7 @@
 						<td>Pagato:</td>
 						<td>
 							<input type="radio" name="pagato" value="1">si
-							<input type="radio" name="pagato" value="0"checked>no
+							<input type="radio" name="pagato" value="0" checked>no
 						</td>
 					</tr>
 					<tr>
@@ -67,7 +67,7 @@
 							<select name="id_utente">
 								<option disabled selected>--scegli--</option>
 								<?php foreach($utenti as $utente): ?>
-								<option value="<?php echo $utente->getId(); ?>" <?php echo ($multa->getId_utente == $utente->getId()) ? "selected" : ""; ?>><?php echo $utente->getCognome().' '.$utente->getNome(); ?> </option>
+								<option value="<?php echo $utente->getId(); ?>" <?php echo ($multa->getId_utente() == $utente->getId()) ? "selected" : ""; ?>><?php echo $utente->getCognome().' '.$utente->getNome(); ?> </option>
 								<?php endforeach; ?>
 							</select>
 						</td>

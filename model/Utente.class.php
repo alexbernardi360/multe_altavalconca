@@ -32,8 +32,6 @@ class Utente{
 	private $location_img = null;
 	private $id_gruppo = null;
 	private $id_ruolo = null;
-	
-	private $saldo = null;
 	 
 	public function getId(){
 		return $this->id;

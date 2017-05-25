@@ -26,15 +26,68 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-<head>
-	<title>show.php</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<style></style>
-	
-</head>
-	
-<body>
-	
-</body>
+	<head>
+		<title>show.php</title>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<style>
+			td{ vertical-align: top; }
+		</style>
+	</head>
+		
+	<body>
+		<p>multe di <?php echo $utente->getNome()." ".$utente->getCognome(); ?></p>
+		<br>
+		
+		<table border="1" align="center">
+			<tr>
+				<th>Multe pagate</th>
+				<th>Multe non pagate</th>
+			</tr>
+			<tr>
+				<td>
+					
+					<table border="3px">
+						<tr>
+							<th><center>Data</center></th>
+							<th><center>Valore</center></th>
+							
+							<th colspan="2"><center>Azioni</center></th>
+						</tr>
+						<?php foreach ($multe1 as $multa): ?>
+						<tr>
+							<td><?php echo $multa->getData(); ?></td>
+							<td><?php echo $multa->getValore(); ?></td>
+							<td><a href="?controller=multa&action=show_details&id=<?php echo $multa->getId(); ?>">Vedi</a></td>
+							<td><a href="?controller=multe&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+						</tr>
+						<?php endforeach; ?>
+					</table>
+					
+				</td>
+				<td>
+					
+					<table border="3px">
+						<tr>
+							<th><center>Data</center></th>
+							<th><center>Valore</center></th>
+							
+							<th colspan="3"><center>Azioni</center></th>
+						</tr>
+						<?php foreach ($multe0 as $multa): ?>
+						<tr>
+							<td><?php echo $multa->getData(); ?></td>
+							<td><?php echo $multa->getValore(); ?></td>
+							<td><a href="?controller=multa&action=show_details&id=<?php echo $multa->getId(); ?>">Vedi</a></td>
+							<td><a href="?controller=multe&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+							<td><a href="?controller=multa&action=paga&id=<?php echo $multa->getId(); ?>">Paga</a></td>
+						</tr>
+						<?php endforeach; ?>
+					</table>
+					
+				</td>
+			</tr>
+			
+		</table>
+	</body>
 
 </html>

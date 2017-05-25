@@ -52,11 +52,28 @@
 			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
 			
+		case 'paga':
+			TabellaMulte::paga($_REQUEST['id']);
+			$utente = new Utente();
+			$utente = TabellaUtente::getById($_REQUEST['id']);
+			$multe0 = TabellaMulte::getMulteById_utente(0, $_REQUEST['id']);
+			$multe1 = TabellaMulte::getMulteById_utente(1, $_REQUEST['id']);
+			$content = get_include_contents("../controller/multe/templates/show.php");
+			break;
+			
 		case 'paga_tutto':
 			TabellaMulte::pagaTutto($_REQUEST['id']);
 			$result = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/templates/list.php");
+			break; 
+			
+		 case 'show':
+			print("controller multa action show");
+			$utente = new Utente();
+			$utente = TabellaUtente::getById($_REQUEST['id']);
+			$multe0 = TabellaMulte::getMulteById_utente(0, $_REQUEST['id']);
+			$multe1 = TabellaMulte::getMulteById_utente(1, $_REQUEST['id']);
+			$content = get_include_contents("../controller/multe/templates/show.php");
 			break;
-	
 	}
 ?>
