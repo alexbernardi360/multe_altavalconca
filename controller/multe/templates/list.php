@@ -45,13 +45,6 @@
 						
 						<th colspan="2"><center>Azioni</center></th>
 					</tr>
-<<<<<<< HEAD
-					<?php endwhile; ?>
-				<?php else: ?>
-					<h2><center>Nessuna multa in sospeso</center></h2>
-				<?php endif; ?>
-			</table>
-=======
 					<?php while($row = mysql_fetch_array($result)): ?>
 						<tr>
 							<td><?php echo $row['nome']; ?></td>
@@ -65,7 +58,6 @@
 			<?php else: ?>
 				<h1>Nessuna multa in sospeso</h1>
 			<?php endif; ?>
->>>>>>> 10f44189c58e7fe80c98cb18b2b93403efc7452e
 			<br>
 			<br>
 			<a href="index.php?controller=multa&action=new">Aggiungi Multa</a>

@@ -90,6 +90,8 @@ class TabellaMulte{
 			return null;
 		}
 	}
+
+	//da rivedere
 	
 	public static function getNonPagati(){
 		$query = sprintf("SELECT * FROM Multe WHERE pagato=0;");
@@ -99,12 +101,37 @@ class TabellaMulte{
 			while($row = mysql_fetch_array($result)){
 				$multa = new Multa();
 				$multa->setId($row["id"]);
+				$multa->setData($row["data"]);
+				$multa->setValore($row["valore"]);
+				$multa->setPagato($row["pagato"]);
+				$multa->setNote($row["note"]);
+				$multa->setId_utente($row["id_utente"]);
 				$multe[] = $multa;
 			}
 			return $multe;
-		}else{
+		}else
 			return null;
-		}
+	}
+
+	public static function getMulteById_utente($pagato, $id_utente){
+		$query = sprintf("SELECT * FROM Multe WHERE pagato=%d AND id_utente='%s';",
+	       		 	$pagato, $id_utente);
+		$result = mysql_query($query);
+		$multe = array();
+		if($result){
+			while($row = mysql_fetch_array($result)){
+				$multa = new Multa();
+				$multa->setId($row["id"]);
+				$multa->setData($row["data"]);
+				$multa->setValore($row["valore"]);
+				$multa->setPagato($row["pagato"]);
+				$multa->setNote($row["note"]);
+				$multa->setId_utente($row["id_utente"]);
+				$multe[] = $multa;
+			}
+			return $multe;
+		}else
+			return null;
 	}
 	
 }
