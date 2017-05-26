@@ -24,7 +24,7 @@
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="it">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 	<head>
 		<?php if(!isset($_REQUEST['id'])): ?>
@@ -48,33 +48,44 @@
 					</tr>
 					<tr>
 						<td>Valore:</td>
-						<td><input type="number" name="valore" step="0.50" value="<?php echo $multa->getValore() ?>"></td> <!-- bloccare in numeri negativi -->
+						<td><input type="number" name="valore" step="0.50" value="<?php echo $multa->getValore() ?>"></td>
 					</tr>
 					<tr>
+					<?php if($_REQUEST['action'] == 'new'): ?>
 						<td>Pagato:</td>
 						<td>
 							<input type="radio" name="pagato" value="1">si
 							<input type="radio" name="pagato" value="0" checked>no
 						</td>
+					<?php else: ?>
+						<input type="hidden" name="pagato" value="<?php echo $multa->getPagato(); ?>">
+					<?php endif; ?>
 					</tr>
 					<tr>
-						<td>Nome:</td>
-						<td><textarea rows="2" cols="30" name="note"></textarea></td>
+						<td>Note:</td>
+						<td><textarea rows="2" cols="30" name="note"><?php echo $multa->getNote() ?></textarea></td>
 					</tr>
 					<tr>
+					<?php if(!$multa->getPagato()): ?>
 						<td>Persona:</td>
 						<td>
 							<select name="id_utente">
 								<option disabled selected>--scegli--</option>
 								<?php foreach($utenti as $utente): ?>
-								<option value="<?php echo $utente->getId(); ?>" <?php echo ($multa->getId_utente() == $utente->getId()) ? "selected" : ""; ?>><?php echo $utente->getCognome().' '.$utente->getNome(); ?> </option>
+								<option value="<?php echo $utente->getId(); ?>" <?php echo ($multa->getId_utente() == $utente->getId()) ? 'selected' : ''; ?>><?php echo $utente->getCognome().' '.$utente->getNome(); ?> </option>
 								<?php endforeach; ?>
 							</select>
 						</td>
+					<?php else: ?>
+						<input type="hidden" name="id_utente" value="<?php echo $multa->getId_utente(); ?>">
+					<?php endif; ?>
 					</tr>
 				</table>
 			</center>
 			<input type="submit" value="Aggiungi">
+			<!-- da rivedere (impostare un bottone al posto di <a... ></a>) -->
+			<a onclick="return confirm('Sei sicuro di voler eliminare questa multa?')"
+					href="index.php?controller=multa&action=delete&id=<?php echo $multa->getId(); ?>">Elimina</a>
 		</form>
 		</center>
 	</body>

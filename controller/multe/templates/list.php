@@ -61,7 +61,7 @@
 			<br>
 			<a href="index.php?controller=multa&action=new">Aggiungi Multa</a>
 			<br>
-			<a href="index.php?controller=utenti&action=list">Lista Persone</a>  <!-- da rivedere -->
+			<a href="index.php?controller=utenti&action=list">Lista Persone</a>
 		</center>
 	</body>
 

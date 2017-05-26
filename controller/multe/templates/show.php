@@ -35,10 +35,10 @@
 	</head>
 		
 	<body>
-		<p>multe di <?php echo $utente->getNome()." ".$utente->getCognome(); ?></p>
+		<h1><center>multe di <?php echo $utente->getNome()." ".$utente->getCognome(); ?></center></h1>
 		<br>
 		
-		<table border="1" align="center">
+		<table align="center">
 			<tr>
 				<th>Multe pagate</th>
 				<th>Multe non pagate</th>
@@ -55,10 +55,10 @@
 						</tr>
 						<?php foreach ($multe1 as $multa): ?>
 						<tr>
-							<td><?php echo $multa->getData(); ?></td>
+							<td><?php echo dateInIt($multa->getData()); ?></td>
 							<td><?php echo $multa->getValore(); ?></td>
 							<td><a href="?controller=multa&action=show_details&id=<?php echo $multa->getId(); ?>">Vedi</a></td>
-							<td><a href="?controller=multe&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+							<td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
 						</tr>
 						<?php endforeach; ?>
 					</table>
@@ -75,11 +75,11 @@
 						</tr>
 						<?php foreach ($multe0 as $multa): ?>
 						<tr>
-							<td><?php echo $multa->getData(); ?></td>
+							<td><?php echo dateInIt($multa->getData()); ?></td>
 							<td><?php echo $multa->getValore(); ?></td>
 							<td><a href="?controller=multa&action=show_details&id=<?php echo $multa->getId(); ?>">Vedi</a></td>
-							<td><a href="?controller=multe&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
-							<td><a href="?controller=multa&action=paga&id=<?php echo $multa->getId(); ?>">Paga</a></td>
+							<td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+							<td><a href="?controller=multa&action=paga&id_multa=<?php echo $multa->getId(); ?>&id_utente=<?php echo $utente->getId(); ?>">Paga</a></td>
 						</tr>
 						<?php endforeach; ?>
 					</table>

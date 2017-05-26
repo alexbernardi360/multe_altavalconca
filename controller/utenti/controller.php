@@ -21,5 +21,17 @@
  * 
  * 
  */
-
+	if(!isset($_REQUEST['action']))
+		$action = 'list';
+	else
+		$action = $_REQUEST['action'];
+		
+	switch ($action){		
+		case 'list':
+			$utenti = array();
+			$utenti = TabellaUtente::getAll();
+			$content = get_include_contents("../controller/utenti/templates/list.php");
+			break;
+	
+	}
 ?>

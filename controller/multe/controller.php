@@ -51,13 +51,40 @@
 			$result = TabellaUtente::getAllWithSaldo();
 			$content = get_include_contents("../controller/multe/templates/list.php");
 			break;
+		
+		case 'edit':
+			$multa = TabellaMulte::getById($_REQUEST['id']);
+			$utenti = TabellaUtente::getAll();
+			$content = get_include_contents("../controller/multe/templates/form.php");
+			break;
+		
+		case 'update':
+			$multa = new Multa();
+			$multa->setId($_POST['id']);
+			$multa->setData($_POST['data']);
+			$multa->setValore($_POST['valore']);
+			$multa->setPagato($_POST['pagato']);
+			$multa->setNote($_POST['note']);
+			$multa->setId_utente($_POST['id_utente']);
+			$multa->update();
+			$result = TabellaUtente::getAllWithSaldo();
+			$content = get_include_contents("../controller/multe/templates/list.php");
+			break;
+			
+		case 'delete':
+			$multa = new Multa();
+			$multa->setId($_REQUEST['id']);
+			$multa->delete();
+			$result = TabellaUtente::getAllWithSaldo();
+			$content = get_include_contents("../controller/multe/templates/list.php");
+			break;
 			
 		case 'paga':
-			TabellaMulte::paga($_REQUEST['id']);
+			TabellaMulte::paga($_REQUEST['id_multa']);
 			$utente = new Utente();
-			$utente = TabellaUtente::getById($_REQUEST['id']);
-			$multe0 = TabellaMulte::getMulteById_utente(0, $_REQUEST['id']);
-			$multe1 = TabellaMulte::getMulteById_utente(1, $_REQUEST['id']);
+			$utente = TabellaUtente::getById($_REQUEST['id_utente']);
+			$multe0 = TabellaMulte::getMulteById_utente(0, $_REQUEST['id_utente']);
+			$multe1 = TabellaMulte::getMulteById_utente(1, $_REQUEST['id_utente']);
 			$content = get_include_contents("../controller/multe/templates/show.php");
 			break;
 			
@@ -68,12 +95,13 @@
 			break; 
 			
 		 case 'show':
-			print("controller multa action show");
 			$utente = new Utente();
 			$utente = TabellaUtente::getById($_REQUEST['id']);
 			$multe0 = TabellaMulte::getMulteById_utente(0, $_REQUEST['id']);
 			$multe1 = TabellaMulte::getMulteById_utente(1, $_REQUEST['id']);
 			$content = get_include_contents("../controller/multe/templates/show.php");
 			break;
+			
+//		case 'show_details':  forse non serve, da valutare
 	}
 ?>

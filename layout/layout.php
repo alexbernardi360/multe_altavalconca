@@ -53,12 +53,12 @@
 				padding: 1em;
 			}
 
-			nav, ul{
+			nav ul{
 				list-style-type: none;
 				padding: 0;
 			}
 			  
-			nav, ul, a{
+			nav ul a{
 				text-decoration: none;
 			}
 
@@ -78,12 +78,14 @@
 			   <h1>Multe Altavalconca Juniores</h1>
 			</header>
 			<nav>
+				<!-- aggiungere tag <summary> -->
+			<?php if($auth):?>
 			  <ul>
-				<?php if($auth):?>
-				<li><a href="index.php?controller=multa&action=list">Multe</a></li>	
+				<li><a href="index.php?controller=multa&action=list">Lista Multe</a></li>
+				<li><a href="index.php?controller=utenti&action=list">Lista Utenti</a></li>
 				<li><a href="index.php?controller=login&action=doLogout">Logout</a></li>
-				<?php endif;?>
 			  </ul>
+			 <?php endif;?>
 			</nav>
 			<article>
 			  <?php echo $content; ?>

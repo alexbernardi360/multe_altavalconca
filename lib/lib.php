@@ -61,11 +61,9 @@
 	}
 
 
-	function data_it($data){
-		$array = explode("-", $data); 
-
+	function dateInIt($str_data){
+		$array = explode("-", $str_data); 
 		$data_it = $array[2]."-".$array[1]."-".$array[0]; 
-
 		return $data_it; 
 	}
 

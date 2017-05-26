@@ -26,7 +26,7 @@ class TabellaMulte{
 	
 	public static function save($multa){
 		$query = sprintf("INSERT INTO Multe(data, valore, pagato, note, id_utente)
-							VALUES('%s', %f, %b, '%s', %d);",
+							VALUES('%s', %F, %b, '%s', %d);",
 							$multa->getData(),
 							$multa->getValore(),
 							$multa->getPagato(),
@@ -35,17 +35,17 @@ class TabellaMulte{
 							
 		mysql_query($query);
 		if(mysql_affected_rows()!=1)
-			print(mysql_error()." errore save()"." - ".$query);
+			print(mysql_error().' errore save()'.' - '.$query);
 	}
 	
 	public static function update($multa){
-		$query = sprintf("UPDATE Multe SET data='%s', valore=%f, pagato=%b, note=%s, id_utente=%d WHERE id=%d;",
+		$query = sprintf("UPDATE Multe SET data='%s', valore=%F, pagato=%b, note='%s', id_utente=%d WHERE id=%d;",
 							$multa->getData(),
 							$multa->getValore(),
 							$multa->getPagato(),
 							$multa->getNote(),
-							$multa->getId_utente());
-							
+							$multa->getId_utente(),
+							$multa->getId());
 		mysql_query($query);
 		if(mysql_affected_rows()!=1){
 			print (mysql_error());
@@ -93,8 +93,24 @@ class TabellaMulte{
 		}else
 			return null;
 	}
-
-	//da rivedere
+	
+	public static function getById($id){
+		$query = sprintf("SELECT * FROM Multe WHERE id=%d;", $id);
+		$result = mysql_query($query);
+		if($result){
+			$row = mysql_fetch_array($result);
+			$multa = new Multa();
+			$multa->setId($row["id"]);
+			$multa->setData($row["data"]);
+			$multa->setValore($row["valore"]);
+			$multa->setPagato($row["pagato"]);
+			$multa->setNote($row["note"]);
+			$multa->setId_utente($row["id_utente"]);
+			
+			return $multa;
+		}else
+			return null;
+	}
 	
 	public static function getNonPagati(){
 		$query = sprintf("SELECT * FROM Multe WHERE pagato=0;");

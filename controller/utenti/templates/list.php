@@ -34,37 +34,26 @@
 
 	<body>
 		<center>
-			<h1>Elenco persone</h1>
+			<h1>Elenco Utenti</h1>
 			<br>
 			<br>
 			<table border="3px">
 				<tr>
-					<th><center></center></th>
 					<th><center>None</center></th>
 					<th><center>Cognome</center></th>
-					<th><center>Note</center></th>
-					<th><center>Valore</center></th>
 					
 					<th colspan="2"><center>AZIONI</center></th>
 				</tr>
-				<?php if($multe != null):?>
-				<?php foreach ($multe as $multa):?>
+				<?php if($utenti != null):?>
+				<?php foreach ($utenti as $utente):?>
 				<tr>
-					<td><?php echo $multa->getId_utente()->getNome() ?></td>
-					<td><?php echo $multa->getId_utente()->getCognome() ?></td>
-					<td><?php echo $multa->getNote() ?></td>
-					<td><?php echo $multa->getValore() ?>
-					<td><a href="?controller=multe&action=paga&id=<?php echo $persona->getId()?>">Paga</a></td>
-					<td><a href="?controller=persona&action=show&id=<?php echo $persona->getId()?>&id_disciplina=<?php echo $persona->getIdDisciplina()?>">Elimina</a></td>
+					<td><?php echo $utente->getNome() ?></td>
+					<td><?php echo $utente->getCognome() ?></td>
+					<td><a href="?controller=multa&action=show&id=<?php echo $utente->getId()?>">Lista multe</a></td>
 				</tr>
 				<?php endforeach;?>
 				<?php endif;?>
-			</table>
-			<br>
-			<br>
-			<a href="?action=new">Nuova Multa</a>
-			
+			</table>			
 		</center>
-		
 	</body>
 </html>
