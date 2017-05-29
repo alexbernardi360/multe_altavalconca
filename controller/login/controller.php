@@ -25,7 +25,7 @@
 	if(isset($_REQUEST['action'])){
 		$action = $_REQUEST['action'];
 		if($action!='login' && $action!='doLogin' && $action!='doLogout'){
-			$action='login';
+			$action = 'login';
 		}
 	}else{
 		$action = 'login';
@@ -37,8 +37,11 @@
 			break;
 		
 		case 'doLogin':
-			if(TabellaUtente::getByUsernameAndPassword($_POST['username'], $_POST['password'])){
-				$_SESSION['username'] = $_POST['username'];	
+			$utente = TabellaUtente::getByUsernameAndPassword($_POST['username'], $_POST['password']);
+			if($utente != null){
+				$_SESSION['username'] = $utente->getUsername();
+				$_SESSION['id_gruppo'] = $utente->getId_gruppo();
+				$_SESSION['id'] = $utente->getId();
 			}				
 			header("Location: ?controller=multa&action=list");
 			break;

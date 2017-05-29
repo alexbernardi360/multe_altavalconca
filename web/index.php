@@ -47,6 +47,31 @@
 		$action = 'login';
 	}
 	
+	
+	//controllo per limitare gli accessi agli utenti base.
+	if($_SESSION['id_gruppo'] == 2){
+		if(!isset($_REQUEST['action']))
+			$action = 'list';
+		else
+			$action = $_REQUEST['action'];
+	}else{
+		switch($controller){
+			case 'multa':
+				$action = 'show';
+				$_REQUEST['id'] = $_SESSION['id'];
+				break;
+			
+			case 'utenti':
+				$controller = 'multa';
+				$action = 'show';
+				$_REQUEST['id'] = $_SESSION['id'];
+				break;
+			
+			case 'login':
+				break;
+		}
+	}
+	
 	switch($controller){
 		
 		case 'multa':
@@ -55,10 +80,6 @@
 		
 		case 'utenti':
 			require('../controller/utenti/controller.php');
-			break;
-			
-		case 'nazione':
-			require('../controller/nazione/controller.php');
 			break;
 		
 		case 'login':

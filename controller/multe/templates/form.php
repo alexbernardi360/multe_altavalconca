@@ -83,9 +83,10 @@
 				</table>
 			</center>
 			<input type="submit" value="Aggiungi">
-			<!-- da rivedere (impostare un bottone al posto di <a... ></a>) -->
-			<a onclick="return confirm('Sei sicuro di voler eliminare questa multa?')"
-					href="index.php?controller=multa&action=delete&id=<?php echo $multa->getId(); ?>">Elimina</a>
+		</form>
+		
+		<form method="POST" action="index.php?controller=multa&action=delete&id=<?php echo $multa->getId(); ?>">
+			<button onclick="return confirm('Sei sicuro di voler eliminare questa multa?')">Elimina</button>
 		</form>
 		</center>
 	</body>

@@ -86,13 +86,24 @@ class TabellaUtente{
 	}
 	
 	public static function getByUsernameAndPassword($user, $pass){
-		$query=sprintf("SELECT * FROM Utenti WHERE username='%s' AND password='%s';", $user, sha1($pass));
-		mysql_query($query);
+		$query = sprintf("SELECT * FROM Utenti WHERE username='%s' AND password='%s';", $user, sha1($pass));
+		$result = mysql_query($query);
 		if(mysql_affected_rows()!=1){
 			print('Errore, credenziali errate');
-			return FALSE;
-		}else
-			return TRUE;
+			return null;
+		}else{
+			$row = mysql_fetch_array($result);
+			$utente = new Utente();
+			$utente->setId($row["id"]);
+			$utente->setUsername($row["username"]);
+			$utente->setNome($row["nome"]);
+			$utente->setCognome($row["cognome"]);
+			$utente->setData_nascita($row["data_nascita"]);
+			$utente->setLocation_img($row["location_img"]);
+			$utente->setId_gruppo($row["id_gruppo"]);
+			$utente->setId_ruolo($row["id_ruolo"]);
+			return $utente;
+		}
 	}
 	
 	public static function getById($id){

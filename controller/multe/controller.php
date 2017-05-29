@@ -21,12 +21,25 @@
  * 
  * 
  */
+	
+	if($_SESSION['id_gruppo'] == 2){                  //1:base   2:admin
+		if(!isset($_REQUEST['action']))
+			$action = 'list';
+		else
+			$action = $_REQUEST['action'];
+	}else{
+		$action = 'show';
+		$_REQUEST['id'] = $_SESSION['id'];
+	}
+	
+	
 
-
-	if(!isset($_REQUEST['action']))
+/*
+	if(!isset($_REQUEST['action'])){
 		$action = 'list';
 	else
 		$action = $_REQUEST['action'];
+*/
 		
 	switch ($action){		
 		case 'list':  //solo multe da pagare (pagato = 0)
