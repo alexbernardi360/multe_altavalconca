@@ -21,16 +21,15 @@
  * 
  * 
  */
+
 	
 	if($_SESSION['id_gruppo'] == 2){                  //1:base   2:admin
 		if(!isset($_REQUEST['action']))
 			$action = 'list';
 		else
 			$action = $_REQUEST['action'];
-	}else{
+	}else
 		$action = 'show';
-		$_REQUEST['id'] = $_SESSION['id'];
-	}
 	
 	
 
@@ -109,7 +108,11 @@
 			
 		 case 'show':
 			$utente = new Utente();
-			$utente = TabellaUtente::getById($_REQUEST['id']);
+			if($_SESSION['id_gruppo'] == 2)
+				$id = $_REQUEST['id'];
+			else
+				$id = $_SESSION['id'];					
+			$utente = TabellaUtente::getById($id);
 			$multe0 = TabellaMulte::getMulteById_utente(0, $_REQUEST['id']);
 			$multe1 = TabellaMulte::getMulteById_utente(1, $_REQUEST['id']);
 			$content = get_include_contents("../controller/multe/templates/show.php");

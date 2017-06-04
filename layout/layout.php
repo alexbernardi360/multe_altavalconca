@@ -21,16 +21,27 @@
  * 
  * 
  */
-
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 	<head>
-		<link href="/home/alessandro/Immagini/icons/favicon.ico" rel="shortcut icon">
-		<title>Layout.php</title>
+		<link href="icone/favicon.ico" rel="icon">
+		<title>Multe Altavalconca</title>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<link rel="stylesheet" href="/resources/demos/style.css">
+		<script>
+			$(function(){
+    				$( "#datepicker" ).datepicker();
+  			});
+		</script>
+		
 		<style>
 			div.container{
 				width: 100%;
@@ -75,20 +86,21 @@
 	<body>
 		<div class="container">
 			<header>
-			   <h1>Multe Altavalconca Juniores</h1>
+				<img align="left" src="icone/ms-icon-70x70.png">
+				<h1>Multe Altavalconca Juniores</h1>
 			</header>
 			<nav>
 				<!-- aggiungere tag <summary> -->
-			<?php if($auth):?>
-			  <ul>
-				<li><a href="index.php?controller=multa&action=list">Lista Multe</a></li>
-				<li><a href="index.php?controller=utenti&action=list">Lista Utenti</a></li>
-				<li><a href="index.php?controller=login&action=doLogout">Logout</a></li>
-			  </ul>
-			 <?php endif;?>
+				<?php if($auth):?>
+				<ul>
+					<li><a href="index.php?controller=multa&action=list">Lista Multe</a></li>
+					<li><a href="index.php?controller=utenti&action=list">Lista Utenti</a></li>
+					<li><a href="index.php?controller=login&action=doLogout">Logout</a></li>
+				</ul>
+				<?php endif;?>
 			</nav>
 			<article>
-			  <?php echo $content; ?>
+				<?php echo $content; ?>
 			</article>
 		</div>
 	</body>
