@@ -32,6 +32,24 @@
 			$utenti = TabellaUtente::getAll();
 			$content = get_include_contents("../controller/utenti/templates/list.php");
 			break;
+		
+		case 'new':
+			$utente = new Utente();
+			$content = get_include_contents("../controller/utenti/templates/form.php");
+			break;
+			
+		case 'create':
+			$utente = new Utente();
+			$utente->setUsername($_POST['username']);
+			$utente->setPassword($_POST['password']);
+			$utente->setNome($_POST['nome']);
+			$utente->setCognome($_POST['cognome']);
+			$utente->setData_nascita($_POST['data_nascita']);
+			$utente->setId_gruppo($_POST['id_gruppo']);
+			$utenti = TabellaUtente::getAll();
+			$content = get_include_contents("../controller/utenti/templates/list.php");
+			break;
+
 	
 	}
 ?>
