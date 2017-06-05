@@ -46,10 +46,10 @@
 			$utente->setCognome($_POST['cognome']);
 			$utente->setData_nascita($_POST['data_nascita']);
 			$utente->setId_gruppo($_POST['id_gruppo']);
+			$utente->save();
 			$utenti = TabellaUtente::getAll();
 			$content = get_include_contents("../controller/utenti/templates/list.php");
 			break;
 
-	
 	}
 ?>

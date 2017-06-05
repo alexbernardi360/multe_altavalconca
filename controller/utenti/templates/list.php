@@ -53,7 +53,9 @@
 				</tr>
 				<?php endforeach;?>
 				<?php endif;?>
-			</table>			
+			</table>
+			<br>
+			<a href="index.php?controller=utenti&action=new">Aggiungi Utente</a>			
 		</center>
 	</body>
 </html>

@@ -40,6 +40,7 @@
 			$(function(){
     				$( "#datepicker" ).datepicker();
   			});
+  			
 		</script>
 		
 		<style>
@@ -89,16 +90,16 @@
 				<img align="left" src="icone/ms-icon-70x70.png">
 				<h1>Multe Altavalconca Juniores</h1>
 			</header>
+			<?php if($auth):?>
 			<nav>
 				<!-- aggiungere tag <summary> -->
-				<?php if($auth):?>
 				<ul>
 					<li><a href="index.php?controller=multa&action=list">Lista Multe</a></li>
 					<li><a href="index.php?controller=utenti&action=list">Lista Utenti</a></li>
 					<li><a href="index.php?controller=login&action=doLogout">Logout</a></li>
 				</ul>
-				<?php endif;?>
 			</nav>
+			<?php endif;?>
 			<article>
 				<?php echo $content; ?>
 			</article>

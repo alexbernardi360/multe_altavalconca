@@ -34,13 +34,13 @@
             <center>
 				<table>
 					<tr>
-						<td>Username</td>
-						<td><input required type="text" name="username"></td>
+						<td>Username:</td>
+						<td><input required type="text" placeholder="Username" name="username"></td>
 						
 					</tr>
 					<tr>
-						<td>Password</td>
-						<td><input type="password" name="password"></td>
+						<td>Password:</td>
+						<td><input required type="password" placeholder="Password" name="password"></td>
 					</tr>
 				</table>
 				<input type="submit" value="Accedi">
