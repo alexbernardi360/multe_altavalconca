@@ -29,9 +29,6 @@
 <head>
 	<title>form.php</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	
-	<script>
-	</script>
 </head>
 
 <body>
@@ -48,9 +45,6 @@
 				<tr>
 					<td>Password:</td>
 					<td><input type="password" placeholder="Password" name="password" required></td>
-					<!-- <td><input type="password" placeholder="Confirm Password" name="confirmPass" required></td> -->
-					
-					<!-- <td><input required type="password" name="password"></td> -->
 				</tr>
 				<tr>
 					<td>Nome:</td>

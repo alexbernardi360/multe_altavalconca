@@ -95,6 +95,7 @@
 				<ul>
 					<li><a href="index.php?controller=multa&action=list">Lista Multe</a></li>
 					<li><a href="index.php?controller=utenti&action=list">Lista Utenti</a></li>
+					<li><a href="index.php?controller=utenti&action=editpasswd">Modifica Password</a></li>
 					<li><a href="index.php?controller=login&action=doLogout">Logout</a></li>
 				</ul>
 			</nav>

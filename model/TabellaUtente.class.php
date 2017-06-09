@@ -53,7 +53,7 @@ class TabellaUtente{
 							
 		mysql_query($query);
 		if(mysql_affected_rows()!=1)
-			print (mysql_error());
+			print(mysql_error());
 	}
 	
 	public static function delete($utente){
@@ -70,7 +70,6 @@ class TabellaUtente{
 				$utente = new Utente();
 				$utente->setId($row["id"]);
 				$utente->setUsername($row["username"]);
-			//	$utente->setPassword($row["password"]);
 				$utente->setNome($row["nome"]);
 				$utente->setCognome($row["cognome"]);
 				$utente->setData_nascita($row["data_nascita"]);
@@ -136,6 +135,18 @@ class TabellaUtente{
 							ORDER BY saldo;"); 
 		$result = mysql_query($query);
 		return $result;
+	}
+	
+	public static function updatePasswd($id, $oldpasswd, $newpasswd){
+		$query = sprintf("UPDATE Utenti SET password=SHA1('%s')
+							WHERE id=%d AND password=SHA1('%s');", $newpasswd, $id, $oldpasswd);
+		$resul = mysql_query($query);
+		if(mysql_affected_rows()==1)
+				return true;
+		else{ 
+			print(mysql_error());
+			return false;
+		}
 	}
 }
 ?>

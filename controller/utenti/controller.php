@@ -50,6 +50,15 @@
 			$utenti = TabellaUtente::getAll();
 			$content = get_include_contents("../controller/utenti/templates/list.php");
 			break;
-
+		
+		case 'editpasswd':
+			$content = get_include_contents("../controller/utenti/templates/formpasswd.html");
+			break;
+		
+		case 'updatepasswd':
+			TabellaUtente::updatePasswd($_SESSION['id'], $_REQUEST['oldpasswd'], $_REQUEST['newpasswd']);
+			header("Location: ?controller=multa&action=list");
+			break;
+			break;
 	}
 ?>
