@@ -90,7 +90,6 @@
 				<img align="left" src="icone/ms-icon-70x70.png">
 				<h1>Multe Altavalconca Juniores</h1>
 			</header>
-			<?php if($auth):?>
 			<nav>
 				<!-- aggiungere tag <summary> -->
 				<ul>
@@ -99,7 +98,6 @@
 					<li><a href="index.php?controller=login&action=doLogout">Logout</a></li>
 				</ul>
 			</nav>
-			<?php endif;?>
 			<article>
 				<?php echo $content; ?>
 			</article>

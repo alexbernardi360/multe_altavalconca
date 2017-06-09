@@ -44,7 +44,7 @@
 				<table>
 					<tr>
 						<td>Data:</td>
-						<td><input name="data" value="<?php echo $multa->getData() ?>" id="datepicker"></td>
+						<td><input type="data" name="data" value="<?php echo $multa->getData() ?>"></td>
 					</tr>
 					<tr>
 						<td>Valore:</td>

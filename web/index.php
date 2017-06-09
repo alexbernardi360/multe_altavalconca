@@ -86,7 +86,7 @@
 			require('../controller/login/controller.php');
 			break;
 	}
-	
-	require ('../layout/layout.php');
+	if($auth)
+		require ('../layout/layout.php');
 
 ?>

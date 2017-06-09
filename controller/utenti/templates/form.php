@@ -62,7 +62,7 @@
 				</tr>
 				<tr>
 					<td>Data di Nascita: </td>
-					<td><input name="data_nascita" value="<?php echo $utente->getData_nascita() ?>" id="datepicker"></td>
+					<td><input type="date" name="data_nascita" value="<?php echo $utente->getData_nascita() ?>" ></td>
 				</tr>
 				<tr>
 					<?php if($_REQUEST['action'] == 'new'): ?>

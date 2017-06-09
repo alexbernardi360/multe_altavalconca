@@ -26,7 +26,7 @@ class TabellaUtente{
 	
 	public static function save($utente){
 		$query = sprintf("INSERT INTO Utenti(username, password, nome, cognome, data_nascita, location_img, id_gruppo, id_ruolo)
-							VALUES('%s', '%s', '%s', '%s', '%s', '%s', %d, %d);",
+							VALUES('%s', SHA1('%s'), '%s', '%s', '%s', '%s', %d, %d);",
 							$utente->getUsername(),
 							$utente->getPassword(),
 							$utente->getNome(),

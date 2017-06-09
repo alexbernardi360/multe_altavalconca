@@ -33,7 +33,7 @@
 
 	switch($action){
 		case 'login':
-			$content = get_include_contents("../controller/login/template/form.php");
+			require("../controller/login/template/form.html");
 			break;
 		
 		case 'doLogin':
