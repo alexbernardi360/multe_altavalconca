@@ -60,7 +60,7 @@
 					break;
 				
 				case 'utenti':
-					if($_REQUEST['action'] == 'new' or $_REQUEST['action'] == 'create'){ 
+					if($_REQUEST['action'] == 'new' or $_REQUEST['action'] == 'create' or $_REQUEST['action'] == 'list'){ 
 						$controller = 'multa';
 						$action = 'show';
 						$_REQUEST['id'] = $_SESSION['id'];

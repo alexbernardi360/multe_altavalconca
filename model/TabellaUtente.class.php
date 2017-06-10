@@ -23,130 +23,130 @@
  */
 
 class TabellaUtente{
+
+    public static function save($utente){
+        $query = sprintf("INSERT INTO Utenti(username, password, nome, cognome, data_nascita, location_img, id_gruppo, id_ruolo)
+                            VALUES('%s', SHA1('%s'), '%s', '%s', '%s', '%s', %d, %d);",
+                            $utente->getUsername(),
+                            $utente->getPassword(),
+                            $utente->getNome(),
+                            $utente->getCognome(),
+                            $utente->getData_nascita(),
+                            $utente->getLocation_img(),
+                            $utente->getId_gruppo(),
+                            $utente->getId_ruolo());
+
+        mysql_query($query);
+        if(mysql_affected_rows()!=1)
+            print(mysql_error());
+    }
 	
-	public static function save($utente){
-		$query = sprintf("INSERT INTO Utenti(username, password, nome, cognome, data_nascita, location_img, id_gruppo, id_ruolo)
-							VALUES('%s', SHA1('%s'), '%s', '%s', '%s', '%s', %d, %d);",
-							$utente->getUsername(),
-							$utente->getPassword(),
-							$utente->getNome(),
-							$utente->getCognome(),
-							$utente->getData_nascita(),
-							$utente->getLocation_img(),
-							$utente->getId_gruppo(),
-							$utente->getId_ruolo());
-							
-		mysql_query($query);
-		if(mysql_affected_rows()!=1)
-			print(mysql_error());
-	}
+    public static function update($utente){
+        $query = sprintf("UPDATE Utenti SET username='%s', nome='%s', cognome='%s', data_nascita='%s', location_img='%s', id_gruppo=%d, id_ruolo=%d WHERE id=%d;",
+                            $utente->getUsername(),
+                            $utente->getNome(),
+                            $utente->getCognome(),
+                            $utente->getData_nascita(),
+                            $utente->getLocation_img(),
+                            $utente->getId_gruppo(),
+                            $utente->getId_ruolo());
+
+        mysql_query($query);
+        if(mysql_affected_rows()!=1)
+            print(mysql_error());
+    }
 	
-	public static function update($utente){
-		$query = sprintf("UPDATE Utenti SET username='%s', nome='%s', cognome='%s', data_nascita='%s', location_img='%s', id_gruppo=%d, id_ruolo=%d WHERE id=%d;",
-							$utente->getUsername(),
-							$utente->getNome(),
-							$utente->getCognome(),
-							$utente->getData_nascita(),
-							$utente->getLocation_img(),
-							$utente->getId_gruppo(),
-							$utente->getId_ruolo());
-							
-		mysql_query($query);
-		if(mysql_affected_rows()!=1)
-			print(mysql_error());
-	}
+    public static function delete($utente){
+        $query = sprintf("DELETE FROM Utenti WHERE id=%d;",$utente->getId());
+        mysql_query($query);
+    }	
 	
-	public static function delete($utente){
-		$query = sprintf("DELETE FROM Utenti WHERE id=%d;",$utente->getId());
-		mysql_query($query);
-	}	
-	
-	public static function getAll(){
-		$query = sprintf("SELECT * FROM Utenti WHERE NOT id=1 ORDER BY cognome;");   //diverso da 1 perchè 1 è l'utente "root"
-		$result = mysql_query($query);
-		$utenti = array();
-		if($result){
-			while($row = mysql_fetch_array($result)){
-				$utente = new Utente();
-				$utente->setId($row["id"]);
-				$utente->setUsername($row["username"]);
-				$utente->setNome($row["nome"]);
-				$utente->setCognome($row["cognome"]);
-				$utente->setData_nascita($row["data_nascita"]);
-				$utente->setLocation_img($row["location_img"]);
-				$utente->setId_gruppo($row["id_gruppo"]);
-				$utente->setId_ruolo($row["id_ruolo"]);
-				$utenti[] = $utente;
-			}
-			return $utenti;
-		}else{
-			return null;
-		}
-	}
-	
-	public static function getByUsernameAndPassword($user, $pass){
-		$query = sprintf("SELECT * FROM Utenti WHERE username='%s' AND password='%s';", $user, sha1($pass));
-		$result = mysql_query($query);
-		if(mysql_affected_rows()!=1){
-			print('Errore, credenziali errate');
-			return null;
-		}else{
-			$row = mysql_fetch_array($result);
-			$utente = new Utente();
-			$utente->setId($row["id"]);
-			$utente->setUsername($row["username"]);
-			$utente->setNome($row["nome"]);
-			$utente->setCognome($row["cognome"]);
-			$utente->setData_nascita($row["data_nascita"]);
-			$utente->setLocation_img($row["location_img"]);
-			$utente->setId_gruppo($row["id_gruppo"]);
-			$utente->setId_ruolo($row["id_ruolo"]);
-			return $utente;
-		}
-	}
-	
-	public static function getById($id){
-		$query = sprintf("SELECT * FROM Utenti where id=%d;",$id);
-		$result = mysql_query($query);
-		if(mysql_affected_rows()!=1){
-			print "Errore" . mysql_error();
-		}
-		$row = mysql_fetch_array($result);
-		$utente = new Utente();
-		$utente->setId($row["id"]);
-		$utente->setUsername($row["username"]);
-	//	$utente->setPassword($row["password"]);
-		$utente->setNome($row["nome"]);
-		$utente->setCognome($row["cognome"]);
-		$utente->setData_nascita($row["data_nascita"]);
-		$utente->setLocation_img($row["location_img"]);
-		$utente->setId_gruppo($row["id_gruppo"]);
-		$utente->setId_ruolo($row["id_ruolo"]);
-		return $utente;
-	}
-	
-	
-	public static function getAllWithSaldo(){
-		$query = sprintf("SELECT Utenti.id, Utenti.cognome, Utenti.nome, SUM(Multe.valore) AS saldo
-							FROM Utenti
-							JOIN Multe ON Multe.id_utente = Utenti.id
-							WHERE Multe.pagato = 0
-							GROUP BY Utenti.id, Utenti.cognome, Utenti.nome
-							ORDER BY saldo;"); 
-		$result = mysql_query($query);
-		return $result;
-	}
-	
-	public static function updatePasswd($id, $oldpasswd, $newpasswd){
-		$query = sprintf("UPDATE Utenti SET password=SHA1('%s')
-							WHERE id=%d AND password=SHA1('%s');", $newpasswd, $id, $oldpasswd);
-		$resul = mysql_query($query);
-		if(mysql_affected_rows()==1)
-				return true;
-		else{ 
-			print(mysql_error());
-			return false;
-		}
-	}
+    public static function getAll(){
+        $query = sprintf("SELECT * FROM Utenti WHERE NOT id=1 ORDER BY cognome;");   //diverso da 1 perchè 1 è l'utente "root"
+        $result = mysql_query($query);
+        $utenti = array();
+        if($result){
+            while($row = mysql_fetch_array($result)){
+                $utente = new Utente();
+                $utente->setId($row["id"]);
+                $utente->setUsername($row["username"]);
+                $utente->setNome($row["nome"]);
+                $utente->setCognome($row["cognome"]);
+                $utente->setData_nascita($row["data_nascita"]);
+                $utente->setLocation_img($row["location_img"]);
+                $utente->setId_gruppo($row["id_gruppo"]);
+                $utente->setId_ruolo($row["id_ruolo"]);
+                $utenti[] = $utente;
+            }
+            return $utenti;
+        }else{
+            return null;
+        }
+    }
+
+    public static function getByUsernameAndPassword($user, $pass){
+        $query = sprintf("SELECT * FROM Utenti WHERE username='%s' AND password='%s';", $user, sha1($pass));
+        $result = mysql_query($query);
+        if(mysql_affected_rows()!=1){
+            print('Errore, credenziali errate');
+            return null;
+        }else{
+            $row = mysql_fetch_array($result);
+            $utente = new Utente();
+            $utente->setId($row["id"]);
+            $utente->setUsername($row["username"]);
+            $utente->setNome($row["nome"]);
+            $utente->setCognome($row["cognome"]);
+            $utente->setData_nascita($row["data_nascita"]);
+            $utente->setLocation_img($row["location_img"]);
+            $utente->setId_gruppo($row["id_gruppo"]);
+            $utente->setId_ruolo($row["id_ruolo"]);
+            return $utente;
+        }
+    }
+
+    public static function getById($id){
+        $query = sprintf("SELECT * FROM Utenti where id=%d;",$id);
+        $result = mysql_query($query);
+        if(mysql_affected_rows()!=1){
+            print "Errore" . mysql_error();
+        }
+        $row = mysql_fetch_array($result);
+        $utente = new Utente();
+        $utente->setId($row["id"]);
+        $utente->setUsername($row["username"]);
+    //	$utente->setPassword($row["password"]);
+        $utente->setNome($row["nome"]);
+        $utente->setCognome($row["cognome"]);
+        $utente->setData_nascita($row["data_nascita"]);
+        $utente->setLocation_img($row["location_img"]);
+        $utente->setId_gruppo($row["id_gruppo"]);
+        $utente->setId_ruolo($row["id_ruolo"]);
+        return $utente;
+    }
+
+
+    public static function getAllWithSaldo(){
+        $query = sprintf("SELECT Utenti.id, Utenti.cognome, Utenti.nome, SUM(Multe.valore) AS saldo
+                            FROM Utenti
+                            JOIN Multe ON Multe.id_utente = Utenti.id
+                            WHERE Multe.pagato = 0
+                            GROUP BY Utenti.id, Utenti.cognome, Utenti.nome
+                            ORDER BY saldo;"); 
+        $result = mysql_query($query);
+        return $result;
+    }
+
+    public static function updatePasswd($id, $oldpasswd, $newpasswd){
+        $query = sprintf("UPDATE Utenti SET password=SHA1('%s')
+                            WHERE id=%d AND password=SHA1('%s');", $newpasswd, $id, $oldpasswd);
+        mysql_query($query);
+        if(mysql_affected_rows() == 1)
+            return true;
+        else{ 
+            print(mysql_error());
+            return false;
+        }
+    }
 }
 ?>
