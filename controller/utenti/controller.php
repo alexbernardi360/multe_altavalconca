@@ -62,9 +62,10 @@
                 $changedPasswd = TabellaUtente::updatePasswd($_SESSION['id'], $_REQUEST['oldpasswd'], $_REQUEST['newpasswd']);
                 if($changedPasswd)
                     header("Location: ?controller=multa&action=list");
-                else
+                else{
                     $wrongPasswd = true;
                     $content = get_include_contents("../controller/utenti/templates/formpasswd.php");
+                }
                 break;
     }
 ?>
