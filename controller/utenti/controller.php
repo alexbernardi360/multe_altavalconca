@@ -54,17 +54,18 @@
                 break;
 
         case 'editpasswd':
-                if(!isset($wrongPasswd))
-                    $wrongPasswd = false;
+                $wrongPasswd = false;
                 $content = get_include_contents("../controller/utenti/templates/formpasswd.php");
                 break;
 
         case 'updatepasswd':
-                $wrongPasswd = TabellaUtente::updatePasswd($_SESSION['id'], $_REQUEST['oldpasswd'], $_REQUEST['newpasswd']);
-                if($wrongPasswd)
+                $changedPasswd = TabellaUtente::updatePasswd($_SESSION['id'], $_REQUEST['oldpasswd'], $_REQUEST['newpasswd']);
+                if($changedPasswd)
                     header("Location: ?controller=multa&action=list");
-                else
-                    header("Location: ?controller=utenti&action=editpasswd");
+                else{
+                    $wrongPasswd = true;
+                    $content = get_include_contents("../controller/utenti/templates/formpasswd.php");
+                }
                 break;
     }
 ?>

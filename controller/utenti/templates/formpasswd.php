@@ -34,23 +34,23 @@
 
     <body>
         <fieldset>
-        <?php if($wrongPasswd): ?>
-            <legend>Modifica Password: Inserisci la vecchia password come conferma.</legend>
+        <?php if($wrongPasswd == false): ?>
+            <h2>Modifica Password</h2>
         <?php else: ?>
-            <legend>Vecchia Password errata: Password non modificata.</legend>
+            <h2>Password errata</h2>
         <?php endif; ?>
             <form action="index.php?controller=utenti&action=updatepasswd" method="POST">
-                <table>
+                <table class="table table-striped">
                     <td>
                         <td>Vechia Password:</td>
-                        <td><input type="password" name="oldpasswd" required></td>
+                        <td><input type="password" class="form-control" name="oldpasswd" required></td>
                     </tr>
                     <td>
                         <td>Nuova password:</td>
-                        <td><input type="password" name="newpasswd" required></td>
+                        <td><input type="password" class="form-control" name="newpasswd" required></td>
                     </tr>
                 </table>
-                <input type="submit" value="Modifica Password">
+                <input type="submit" class="btn btn-success" value="Modifica Password">
             </form>
         </fieldset>
     </body>

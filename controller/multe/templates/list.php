@@ -26,43 +26,45 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-	<head>
-		<title>lista multe</title>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	</head>
+    <head>
+        <title>lista multe</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    </head>
 
-	<body>
-		<center>
-			<?php if(mysql_num_rows($result)): ?>
-				<h1>Elenco persone multate</h1>
-				<br>
-				<br>
-				<table border="3px">			
-					<tr>
-						<th><center>Nome</center></th>
-						<th><center>Cognome</center></th>
-						<th><center>Saldo</center></th>
-						<th colspan="2"><center>Azioni</center></th>
-					</tr>
-					<?php while($row = mysql_fetch_array($result)): ?>
-						<tr>
-							<td><?php echo $row['nome']; ?></td>
-							<td><?php echo $row['cognome']; ?></td>
-							<td><?php echo $row['saldo'].'€'; ?></td>
-							<td><a href="index.php?controller=multa&action=paga_tutto&id=<?php echo $row['id']; ?>">Paga tutto</a></td>
-							<td><a href="index.php?controller=multa&action=show&id=<?php echo $row['id']; ?>">Vedi tutto</a></td>
-						</tr>
-					<?php endwhile; ?>					
-				</table>
-			<?php else: ?>
-				<h1>Nessuna multa in sospeso</h1>
-			<?php endif; ?>
-			<br>
-			<br>
-			<a href="index.php?controller=multa&action=new">Aggiungi Multa</a>
-			<br>
-			<a href="index.php?controller=utenti&action=list">Lista Persone</a>
-		</center>
-	</body>
+    <body>
+        <center>
+        <?php if(mysql_num_rows($result)): ?>
+            <h1>Elenco persone multate</h1>
+            <br>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Cognome</th>
+                        <th>Saldo</th>
+                        <th>Azioni</th>
+                    </tr>
+                </thead>
+            <?php while($row = mysql_fetch_array($result)): ?>
+                    <tr>
+                        <td><?php echo $row['nome']; ?></td>
+                        <td><?php echo $row['cognome']; ?></td>
+                        <td><?php echo $row['saldo'].'€'; ?></td>
+                        <td><a href="index.php?controller=multa&action=paga_tutto&id=<?php echo $row['id']; ?>">Paga tutto</a>
+                        <br><a href="index.php?controller=multa&action=show&id=<?php echo $row['id']; ?>">Vedi tutto</a></td>
+                    </tr>
+            <?php endwhile; ?>					
+            </table>
+        <?php else: ?>
+            <h1>Nessuna multa in sospeso</h1>
+        <?php endif; ?>
+            <br>
+            <br>
+            <a href="index.php?controller=multa&action=new">Aggiungi Multa</a>
+            <br>
+            <a href="index.php?controller=utenti&action=list">Lista Persone</a>
+        </center>
+    </body>
 
 </html>

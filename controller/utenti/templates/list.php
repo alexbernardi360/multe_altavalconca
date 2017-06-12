@@ -28,34 +28,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
 <head>
-	<title>Lista</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	</head>
+    <title>Lista</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    </head>
 
-	<body>
-		<center>
-			<h1>Elenco Utenti</h1>
-			<br>
-			<br>
-			<table border="3px">
-				<tr>
-					<th><center>None</center></th>
-					<th><center>Cognome</center></th>
-					
-					<th colspan="2"><center>AZIONI</center></th>
-				</tr>
-				<?php if($utenti != null):?>
-				<?php foreach ($utenti as $utente):?>
-				<tr>
-					<td><?php echo $utente->getNome() ?></td>
-					<td><?php echo $utente->getCognome() ?></td>
-					<td><a href="?controller=multa&action=show&id=<?php echo $utente->getId()?>">Lista multe</a></td>
-				</tr>
-				<?php endforeach;?>
-				<?php endif;?>
-			</table>
-			<br>
-			<a href="index.php?controller=utenti&action=new">Aggiungi Utente</a>			
-		</center>
-	</body>
+    <body>
+        <center>
+            <h1>Elenco Utenti</h1>
+            <br>
+            <br>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>None</th>
+                        <th>Cognome</center></th>
+
+                        <th>AZIONI</center></th>
+                    </tr>
+                </thead>
+                <?php if($utenti != null):?>
+                <?php foreach ($utenti as $utente):?>
+                <tr>
+                    <td><?php echo $utente->getNome() ?></td>
+                    <td><?php echo $utente->getCognome() ?></td>
+                    <td><a href="?controller=multa&action=show&id=<?php echo $utente->getId()?>">Lista multe</a></td>
+                </tr>
+                <?php endforeach;?>
+                <?php endif;?>
+            </table>
+            <br>
+            <a href="index.php?controller=utenti&action=new">Aggiungi Utente</a>			
+        </center>
+    </body>
 </html>

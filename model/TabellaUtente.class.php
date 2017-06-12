@@ -132,7 +132,7 @@ class TabellaUtente{
                             JOIN Multe ON Multe.id_utente = Utenti.id
                             WHERE Multe.pagato = 0
                             GROUP BY Utenti.id, Utenti.cognome, Utenti.nome
-                            ORDER BY saldo;"); 
+                            ORDER BY cognome;"); 
         $result = mysql_query($query);
         return $result;
     }

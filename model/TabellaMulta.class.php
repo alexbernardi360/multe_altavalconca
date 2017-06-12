@@ -55,7 +55,7 @@ class TabellaMulte{
 	public static function pagaTutto($id_utente){
 		$query = sprintf("UPDATE Multe SET pagato=1 WHERE id_utente='%d';", $id_utente);
 		mysql_query($query);
-		if(!mysql_affected_rows()!=1){
+		if(mysql_affected_rows() == 0){
 			print('errore pagamento');
 		}
 	}

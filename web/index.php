@@ -89,6 +89,6 @@
 	}
 	
 	if($auth)
-		require ('../layout/layout.php');
+		require ('../layout/layoutBootstrap.php');
 
 ?>

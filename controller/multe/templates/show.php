@@ -26,66 +26,104 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-	<head>
-		<title>show.php</title>
-		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-		<style>
-			td{ vertical-align: top; }
-		</style>
-	</head>
-		
-	<body>
-		<h1><center>multe di <?php echo $utente->getNome()." ".$utente->getCognome(); ?></center></h1>
-		<br>
-		
-		<table align="center">
-			<tr>
-				<th>Multe pagate</th>
-				<th>Multe non pagate</th>
-			</tr>
-			<tr>
-				<td>
-					
-					<table border="3px">
-						<tr>
-							<th><center>Data</center></th>
-							<th><center>Valore</center></th>
-							
-							<th><center>Azioni</center></th>
-						</tr>
-						<?php foreach ($multe1 as $multa): ?>
-						<tr>
-							<td><?php echo dateInIt($multa->getData()); ?></td>
-							<td><?php echo $multa->getValore(); ?></td>
-							<td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
-						</tr>
-						<?php endforeach; ?>
-					</table>
-					
-				</td>
-				<td>
-					
-					<table border="3px">
-						<tr>
-							<th><center>Data</center></th>
-							<th><center>Valore</center></th>
-							
-							<th colspan="2"><center>Azioni</center></th>
-						</tr>
-						<?php foreach ($multe0 as $multa): ?>
-						<tr>
-							<td><?php echo dateInIt($multa->getData()); ?></td>
-							<td><?php echo $multa->getValore(); ?></td>
-							<td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
-							<td><a href="?controller=multa&action=paga&id_multa=<?php echo $multa->getId(); ?>&id_utente=<?php echo $utente->getId(); ?>">Paga</a></td>
-						</tr>
-						<?php endforeach; ?>
-					</table>
-					
-				</td>
-			</tr>
-			
-		</table>
-	</body>
+    <head>
+            <title>show.php</title>
+            <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+            <style> td{vertical-align: top;} </style>
+    </head>
+
+    <body>
+            <h1><center>Multe di <?php echo $utente->getNome()." ".$utente->getCognome(); ?></center></h1>
+            <div>
+                <div class="col-sm-6">
+                    <b>Multe non pagate</b> 
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Data</th>
+                            <th>Valore</th>
+
+                            <th colspan="2">Azioni</th>
+                        </tr>
+                    <?php foreach ($multe0 as $multa): ?>
+                        <tr>
+                            <td><?php echo dateInIt($multa->getData()); ?></td>
+                            <td><?php echo $multa->getValore(); ?></td>
+                            <td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+                            <td><a href="?controller=multa&action=paga&id_multa=<?php echo $multa->getId(); ?>&id_utente=<?php echo $utente->getId(); ?>">Paga</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <b>Multe pagate</b>
+                    <table class="table table-striped">
+                        <tr>
+                            <th>Data</th>
+                            <th>Valore</th>
+
+                            <th>Azioni</th>
+                        </tr>
+                    <?php foreach ($multe1 as $multa): ?>
+                        <tr>
+                            <td><?php echo dateInIt($multa->getData()); ?></td>
+                            <td><?php echo $multa->getValore(); ?></td>
+                            <td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </table>
+                </div>
+            </div>
+          
+            
+            
+            
+            
+            
+            
+<!--        <table align="center">
+            <tr>
+                <th>Multe pagate</th>
+                <th>Multe non pagate</th>
+            </tr>
+            <tr>
+                <td>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Data</th>
+                            <th>Valore</th>
+
+                            <th>Azioni</th>
+                        </tr>
+                    <?php foreach ($multe1 as $multa): ?>
+                        <tr>
+                            <td><?php echo dateInIt($multa->getData()); ?></td>
+                            <td><?php echo $multa->getValore(); ?></td>
+                            <td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Data</th>
+                            <th>Valore</th>
+
+                            <th colspan="2">Azioni</th>
+                        </tr>
+                    <?php foreach ($multe0 as $multa): ?>
+                        <tr>
+                            <td><?php echo dateInIt($multa->getData()); ?></td>
+                            <td><?php echo $multa->getValore(); ?></td>
+                            <td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+                            <td><a href="?controller=multa&action=paga&id_multa=<?php echo $multa->getId(); ?>&id_utente=<?php echo $utente->getId(); ?>">Paga</a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                        </table>        
+                </td>
+            </tr>
+        </table>
+-->
+    </body>
 
 </html>
