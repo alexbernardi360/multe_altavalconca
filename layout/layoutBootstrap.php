@@ -49,7 +49,7 @@
             .wrapper {
                 min-height: 100%;
                 height: auto;
-                margin-bottom: -50px; /* the bottom margin is the negative value of the footer's total height */
+                margin-bottom: 0px; /* the bottom margin is the negative value of the footer's total height */
             }
 
             /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -73,7 +73,7 @@
                 background-color: #555;
                 color: white;
                 padding: 15px;
-                height: 50px;
+                height: auto;
             }
 
             /* On small screens, set height to 'auto' for sidenav and grid */
@@ -84,6 +84,12 @@
                 }
                 .row.content {height:auto;} 
             }
+            
+            .footer-ul { list-style-type:none;  padding-left:0px; margin-left:2px;}
+            .footer-ul li { line-height:29px;}
+            .footer-ul li a { color:#a0a3a4; transition: color 0.2s linear 0s, background 0.2s linear 0s; }
+            .footer-ul i { margin-right:10px;}
+            .footer-ul li a:hover {transition: color 0.2s linear 0s, background 0.2s linear 0s; color:#ff670f; }
         </style>
     </head>
     <body>
@@ -100,19 +106,27 @@
                     </div>
                     <div class="collapse navbar-collapse" id="myNavbar">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.php?controller=multa">Home</a></li>
+                            <li><a href="index.php?controller=multa">Home</a></li>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Impostazioni<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="index.php?controller=utenti&action=editpasswd">Modifica password</a></li>
-                                    <li><a href="#">Modifica profilo</a></li>
+                                    <li><a href="index.php?controller=utenti&action=edit_profile">Modifica profilo</a></li>
                                 </ul>
                             </li>
+                        <?php if($_SESSION['id_gruppo'] == 2): ?>
                             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Multe<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="index.php?controller=multa&action=new">Aggiungi multa</a></li>
                                     <li><a href="index.php?controller=multa&action=list">Lista multe</a></li>
                                 </ul>
                             </li>
+                            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">Utenti<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="index.php?controller=utenti&action=new">Aggiungi utente</a></li>
+                                    <li><a href="index.php?controller=utenti&action=list">Lista utenti</a></li>
+                                </ul>
+                            </li>
+                        <?php endif; ?>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="index.php?controller=login&action=doLogout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -123,24 +137,48 @@
 
           <div class="container-fluid text-left">    
                 <div class="row content">
-                    <div class="col-sm-2">  <!-- attribito sidenav dentro questo div-->
-<!--                            <p><a href="index.php?controller=multa&action=list">Lista Multe</a></p>
-                            <p><a href="index.php?controller=utenti&action=list">Lista Utenti</a></p>
-                            <p><a href="index.php?controller=utenti&action=editpasswd">Modifica Password</a></p>
--->
-                    </div>
-
+                    <div class="col-sm-2"></div>
                     <div class="col-sm-8 text-left"> 
                         <?php echo $content; ?>
                     </div>
                 </div>
             </div>
         </div>
-<!--
-        <footer class="container-fluid text-center">
-            <p>Footer Text</p>
+
+        <footer class="container-fluid">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 text-left">
+                <div class="col-sm-4">
+                    <img src="/icone/altavalconca2.png" alt="Alta Valconca" width="50px" height="50px"> 
+                    <p>
+                        Sito per la gestione delle multe riguardanti la categoria Juniores della società Alta Valconca.
+                        Solo i tesserati hanno il diritto di usufruire delle funzionalità del sito.
+                    </p>
+                    <br>
+                </div>
+                <div class="col-sm-4">
+                    <h4>A cura di <i>Alessandro Bernardi.</i></h4>
+                    <h4>Contatti</h4>
+                    <p><i>via Trebbio 38, Montegridolfo, Rimini, Italy</i></p>
+                    <p><i>Phone: </i>+39 3318977918</p>
+                    <p><i>E-mail: </i>alexbernardi360@gmail.com</p>
+                    <br>
+                </div>
+                <div class="col-sm-4">
+                    <h4>Link utili</h4>
+                    <ul class="footer-ul">
+                        <li><a href="index.php?controller=utenti&action=editpasswd">Modifica password</a></li>
+                        <li><a href="index.php?controller=utenti&action=edit_profile">Modifica profilo</a></li>
+                    <?php if($_SESSION['id_gruppo'] == 2): ?>  
+                        <li><a href="index.php?controller=multa&action=new">Aggiungi multa</a></li>
+                        <li><a href="index.php?controller=multa&action=list">Lista multe</a></li>
+                        <li><a href="index.php?controller=utenti&action=new">Aggiungi utente</a></li>
+                        <li><a href="index.php?controller=utenti&action=list">Lista utenti</a></li>
+                    <?php endif; ?>
+                    </ul>
+                </div>
+            </div>
         </footer>
--->
 
     </body>
 

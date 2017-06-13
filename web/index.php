@@ -21,74 +21,73 @@
  * 
  * 
  */
-	require('../lib/lib.php');
-	require('../config/connessione.php');
-	require('../model/Multa.class.php');
-	require('../model/TabellaMulta.class.php');
-	require('../model/Utente.class.php');
-	require('../model/TabellaUtente.class.php');
+    require('../lib/lib.php');
+    require('../config/connessione.php');
+    require('../model/Multa.class.php');
+    require('../model/TabellaMulta.class.php');
+    require('../model/Utente.class.php');
+    require('../model/TabellaUtente.class.php');
 
-	session_start();
-	if(isset($_SESSION['username'])){
-		$username = $_SESSION['username'];
-		$auth = true;
-	}else{
-		$auth=false;
-	}
+    session_start();
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+        $auth = true;
+    }else
+        $auth=false;
 
-	if(!isset($_REQUEST['controller'])){
-		$controller = 'multa';
-	}else{
-		$controller = $_REQUEST['controller'];
-	}
-	
-	if(!$auth){
-		$controller =  'login';
-		$action = 'login';
-	}else{
-		//controllo per limitare gli accessi agli utenti base. 2-amministratore   1-base
-		if($_SESSION['id_gruppo'] == 2){
-			if(!isset($_REQUEST['action']))
-				$action = 'list';
-			else
-				$action = $_REQUEST['action'];
-		}else{
-			switch($controller){
-				case 'multa':
-					$action = 'show';
-					$_REQUEST['id'] = $_SESSION['id'];
-					break;
-				
-				case 'utenti':
-					if($_REQUEST['action'] == 'new' or $_REQUEST['action'] == 'create' or $_REQUEST['action'] == 'list'){ 
-						$controller = 'multa';
-						$action = 'show';
-						$_REQUEST['id'] = $_SESSION['id'];
-					}else
-						$action = $_REQUEST['action'];
-					break;
-				
-				case 'login':
-					break;
-			}
-		}
-	}
-	switch($controller){
-		
-		case 'multa':
-			require('../controller/multe/controller.php');
-			break;
-		
-		case 'utenti':
-			require('../controller/utenti/controller.php');
-			break;
-		
-		case 'login':
-			require('../controller/login/controller.php');
-			break;
-	}
-	
-	if($auth)
-		require ('../layout/layoutBootstrap.php');
+    if(!isset($_REQUEST['controller'])){
+        $controller = 'multa';
+    }else
+        $controller = $_REQUEST['controller'];
+
+    if(!$auth){
+        $controller =  'login';
+        $action = 'login';
+    }else{
+        //controllo per limitare gli accessi agli utenti base. 2-amministratore   1-base
+        if($_SESSION['id_gruppo'] == 2){
+            if(!isset($_REQUEST['action']))
+                $action = 'list';
+            else
+                $action = $_REQUEST['action'];
+        }else{
+            switch($controller){
+                case 'multa':
+                        $action = 'show';
+                        $_REQUEST['id'] = $_SESSION['id'];
+                        break;
+
+                case 'utenti':
+                        if($_REQUEST['action'] == 'new' or $_REQUEST['action'] == 'create' or $_REQUEST['action'] == 'list'){ 
+                            $controller = 'multa';
+                            $action = 'show';
+                            $_REQUEST['id'] = $_SESSION['id'];
+                        }else
+                            $action = $_REQUEST['action'];
+                        break;
+
+                case 'login':
+                        if($auth)
+                            $action = 'doLogout';
+                        break;
+            }
+        }
+    }
+    switch($controller){
+        case 'multa':
+                require('../controller/multe/controller.php');
+                break;
+
+        case 'utenti':
+                require('../controller/utenti/controller.php');
+                break;
+
+        case 'login':
+                require('../controller/login/controller.php');
+                break;
+    }
+
+    if($auth)
+        require ('../layout/layoutBootstrap.php');
 
 ?>

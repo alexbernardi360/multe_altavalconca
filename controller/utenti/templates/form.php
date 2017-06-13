@@ -22,57 +22,63 @@
  * 
  */
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-<head>
-	<title>form.php</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-</head>
+    <head>
+        <title>form.php</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    </head>
 
-<body>
-	<fieldset>
-		<legend>Dati nuovo utente</legend>
-		<form id="regForm" action="index.php?controller=utenti" method="POST">
-			<input type="hidden" name="action" value="<?php echo $utente->getId() ? 'update' : 'create' ?>">
-			<input type="hidden" name="id" value="<?php echo $utente->getId() ?>">
-			<table>
-				<tr>
-					<td>Username:</td>
-					<td><input required type="text" name="username" value="<?php echo $utente->getUsername(); ?>"</td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type="password" placeholder="Password" name="password" required></td>
-				</tr>
-				<tr>
-					<td>Nome:</td>
-					<td><input required type="text" name="nome" value="<?php echo $utente->getNome(); ?>"></td>
-				</tr>
-				<tr>
-					<td>Cognome:</td>
-					<td><input required type="text" name="cognome" value="<?php echo $utente->getCognome(); ?>"></td>
-				</tr>
-				<tr>
-					<td>Data di Nascita: </td>
-					<td><input type="date" name="data_nascita" value="<?php echo $utente->getData_nascita() ?>" ></td>
-				</tr>
-				<tr>
-					<?php if($_REQUEST['action'] == 'new'): ?>
-						<td>Gruppo:</td>
-						<td>
-							<input type="radio" name="id_gruppo" value="1" checked>utente base
-							<input type="radio" name="id_gruppo" value="2">amministratore
-						</td>
-					<?php else: ?>
-						<input type="hidden" name="id_gruppo" value="<?php echo $utente->getId_gruppo(); ?>">
-					<?php endif; ?>
-				</tr>
-			</table>
-			<input type="submit" value="Aggiungi">
-		</form>
-	</fieldset>
-</body>
+    <body>
+        <h2>Dati nuovo utente</h2>
+        <form id="regForm" action="index.php?controller=utenti" method="POST">
+            <input type="hidden" name="action" value="<?php echo $utente->getId() ? 'update_profile' : 'create'; ?>">
+            <input type="hidden" name="id" value="<?php echo $utente->getId(); ?>">
+            <table class="table table-striped">
+                <tr>
+                    <td>Username:</td>
+                    <td><input required type="text" name="username" class="form-control"
+                               value="<?php echo $utente->getUsername(); ?>"</td>
+                </tr>
+            <?php if($_REQUEST['action'] == 'new'): ?>
+                <tr>
+                    <td>Password:</td>
+                    <td><input required type="password" placeholder="Password" 
+                               name="password" class="form-control"></td>
+                </tr>
+            <?php endif; ?>
+                <tr>
+                    <td>Nome:</td>
+                    <td><input required type="text" name="nome" class="form-control"
+                               value="<?php echo $utente->getNome(); ?>"></td>
+                </tr>
+                <tr>
+                    <td>Cognome:</td>
+                    <td><input required type="text" name="cognome" class="form-control"
+                               value="<?php echo $utente->getCognome(); ?>"></td>
+                </tr>
+                <tr>
+                    <td>Data di Nascita: </td>
+                    <td><input type="date" name="data_nascita" class="form-control"
+                               value="<?php echo $utente->getData_nascita() ?>" ></td>
+                </tr>
+            <?php if($_REQUEST['action'] == 'new'): ?>
+                <tr>
+                    <td>Gruppo:</td>
+                    <td>
+                        <input type="radio" name="id_gruppo" value="1" checked>utente base
+                        <input type="radio" name="id_gruppo" value="2">amministratore
+                    </td> 
+                </tr>
+            <?php else: ?>
+                <input type="hidden" name="id_gruppo" value="<?php echo $utente->getId_gruppo(); ?>">
+            <?php endif; ?>
+            </table>
+            <input type="submit" class="btn btn-success">
+        </form>
+    </body>
 
 </html>

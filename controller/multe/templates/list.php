@@ -50,9 +50,15 @@
                     <tr>
                         <td><?php echo $row['nome']; ?></td>
                         <td><?php echo $row['cognome']; ?></td>
-                        <td><?php echo $row['saldo'].'€'; ?></td>
-                        <td><a href="index.php?controller=multa&action=paga_tutto&id=<?php echo $row['id']; ?>">Paga tutto</a>
-                        <br><a href="index.php?controller=multa&action=show&id=<?php echo $row['id']; ?>">Vedi tutto</a></td>
+                        <td><?php echo $row['saldo'].'€'; ?>
+                        <td>
+                            <div class="btn-group-vertical">
+                                <a href="index.php?controller=multa&action=paga_tutto&id=<?php echo $row['id']; ?>"
+                                   class="btn btn-success btn-xs">Paga tutto</a>
+                                <a href="index.php?controller=multa&action=show&id=<?php echo $row['id']; ?>"
+                                   class="btn btn-info btn-xs">Vedi tutto</a>
+                            </div>
+                        </td>
                     </tr>
             <?php endwhile; ?>					
             </table>
@@ -61,9 +67,10 @@
         <?php endif; ?>
             <br>
             <br>
-            <a href="index.php?controller=multa&action=new">Aggiungi Multa</a>
-            <br>
-            <a href="index.php?controller=utenti&action=list">Lista Persone</a>
+            <a href="index.php?controller=multa&action=new"
+               class="btn btn-success">Aggiungi Multa</a>
+            <a href="index.php?controller=utenti&action=list"
+               class="btn btn-info">Lista Persone</a>
         </center>
     </body>
 

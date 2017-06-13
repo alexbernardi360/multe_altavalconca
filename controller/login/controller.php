@@ -22,33 +22,32 @@
  * 
  */
  
-	if(isset($_REQUEST['action'])){
-		$action = $_REQUEST['action'];
-		if($action!='login' && $action!='doLogin' && $action!='doLogout'){
-			$action = 'login';
-		}
-	}else{
-		$action = 'login';
-	}
+    if(isset($_REQUEST['action'])){
+        $action = $_REQUEST['action'];
+        if($action!='login' && $action!='doLogin' && $action!='doLogout'){
+            $action = 'login';
+        }
+    }else
+        $action = 'login';
 
-	switch($action){
-		case 'login':
-			require("../controller/login/template/form.html");
-			break;
-		
-		case 'doLogin':
-			$utente = TabellaUtente::getByUsernameAndPassword($_POST['username'], $_POST['password']);
-			if($utente != null){
-				$_SESSION['username'] = $utente->getUsername();
-				$_SESSION['id_gruppo'] = $utente->getId_gruppo();
-				$_SESSION['id'] = $utente->getId();
-			}				
-			header("Location: ?controller=multa&action=list");
-			break;
-		
-		case 'doLogout':
-			session_destroy();
-			header("Location: ?controller=login&action=login");
-			break;
-	}
+    switch($action){
+        case 'login':
+                require("../controller/login/template/form.html");
+                break;
+
+        case 'doLogin':
+                $utente = TabellaUtente::getByUsernameAndPassword($_POST['username'], $_POST['password']);
+                if($utente != null){
+                    $_SESSION['username'] = $utente->getUsername();
+                    $_SESSION['id_gruppo'] = $utente->getId_gruppo();
+                    $_SESSION['id'] = $utente->getId();
+                }				
+                header("Location: ?controller=multa&action=list");
+                break;
+
+        case 'doLogout':
+                session_destroy();
+                header("Location: ?controller=login&action=login");
+                break;
+    }
  ?>

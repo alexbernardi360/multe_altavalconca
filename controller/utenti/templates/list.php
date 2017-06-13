@@ -51,13 +51,15 @@
                 <tr>
                     <td><?php echo $utente->getNome() ?></td>
                     <td><?php echo $utente->getCognome() ?></td>
-                    <td><a href="?controller=multa&action=show&id=<?php echo $utente->getId()?>">Lista multe</a></td>
+                    <td><a href="?controller=multa&action=show&id=<?php echo $utente->getId()?>"
+                           class="btn btn-info btn-xs">Lista multe</a></td>
                 </tr>
                 <?php endforeach;?>
                 <?php endif;?>
             </table>
             <br>
-            <a href="index.php?controller=utenti&action=new">Aggiungi Utente</a>			
+            <a href="index.php?controller=utenti&action=new"
+               class="btn btn-success">Aggiungi Utente</a>			
         </center>
     </body>
 </html>

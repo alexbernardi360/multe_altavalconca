@@ -48,8 +48,16 @@
                         <tr>
                             <td><?php echo dateInIt($multa->getData()); ?></td>
                             <td><?php echo $multa->getValore(); ?></td>
-                            <td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
-                            <td><a href="?controller=multa&action=paga&id_multa=<?php echo $multa->getId(); ?>&id_utente=<?php echo $utente->getId(); ?>">Paga</a></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>"
+                                       class="btn btn-info btn-xs
+                                       <?php echo ($_SESSION['id_gruppo']!=2) ? 'disabled' : '' ?>">Modifica</a>
+                                    <a href="?controller=multa&action=paga&id_multa=<?php echo $multa->getId(); ?>&id_utente=<?php echo $utente->getId(); ?>"
+                                       class="btn btn-success btn-xs
+                                       <?php echo ($_SESSION['id_gruppo']!=2) ? 'disabled' : '' ?>">Paga</a>
+                                </div>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </table>
@@ -67,7 +75,9 @@
                         <tr>
                             <td><?php echo dateInIt($multa->getData()); ?></td>
                             <td><?php echo $multa->getValore(); ?></td>
-                            <td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>">Modifica</a></td>
+                            <td><a href="?controller=multa&action=edit&id=<?php echo $multa->getId(); ?>"
+                                   class="btn btn-info btn-xs
+                                   <?php echo ($_SESSION['id_gruppo']!=2) ? 'disabled' : '' ?>">Modifica</a></td>
                         </tr>
                     <?php endforeach; ?>
                     </table>

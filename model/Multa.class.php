@@ -23,78 +23,78 @@
  */
 
 class Multa{
-	private $id;
-	private $data;
-	private $valore;
-	private $pagato;
-	private $note;
-	private $id_utente;
-	
-	public function getId(){
-		return $this->id;
-	}
-	
-	public function getData(){
-		return $this->data;
-	}
-	
-	public function getValore(){
-		return $this->valore;
-	}
-	
-	public function getPagato(){
-		return $this->pagato;
-	}
-	
-	public function getNote(){
-		return $this->note;
-	}
-	
-	public function getId_utente(){
-		return $this->id_utente;
-	}
-	
-	public function getUtente(){
-		 return TabellaUtente::getById($this->id_utente);
-	 }
-	
-///////////////////////////////////////////
-	
-	public function setId($v){
-		$this->id = $v;
-	}
-	
-	public function setData($v){
-		$this->data = $v;
-	}	
-	
-	public function setValore($v){
-		$this->valore = $v;
-	}
-	
-	public function setPagato($v){
-		$this->pagato = $v;
-	}
-	
-	public function setNote($v){
-		$this->note = $v;
-	}
-	
-	public function setId_utente($v){
-		$this->id_utente = $v;
-	}
+    private $id;
+    private $data;
+    private $valore;
+    private $pagato;
+    private $note;
+    private $id_utente;
+
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getData(){
+        return $this->data;
+    }
+
+    public function getValore(){
+            return $this->valore;
+    }
+
+    public function getPagato(){
+        return $this->pagato;
+    }
+
+    public function getNote(){
+        return $this->note;
+    }
+
+    public function getId_utente(){
+        return $this->id_utente;
+    }
+
+    public function getUtente(){
+        return TabellaUtente::getById($this->id_utente);
+     }
+
 ///////////////////////////////////////////
 
-	public function save(){
-		TabellaMulte::save($this);
-	}
-	
-	public function update(){
-		TabellaMulte::update($this);
-	}
-	
-	public function delete(){
-		TabellaMulte::delete($this);
-	}
+    public function setId($v){
+        $this->id = $v;
+    }
+
+    public function setData($v){
+        $this->data = $v;
+    }	
+
+    public function setValore($v){
+        $this->valore = $v;
+    }
+
+    public function setPagato($v){
+        $this->pagato = $v;
+    }
+
+    public function setNote($v){
+        $this->note = $v;
+    }
+
+    public function setId_utente($v){
+        $this->id_utente = $v;
+    }
+///////////////////////////////////////////
+
+    public function save(){
+        TabellaMulte::save($this);
+    }
+
+    public function update(){
+        TabellaMulte::update($this);
+    }
+
+    public function delete(){
+        TabellaMulte::delete($this);
+    }
 }
 ?>

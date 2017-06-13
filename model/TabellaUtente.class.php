@@ -42,14 +42,13 @@ class TabellaUtente{
     }
 	
     public static function update($utente){
-        $query = sprintf("UPDATE Utenti SET username='%s', nome='%s', cognome='%s', data_nascita='%s', location_img='%s', id_gruppo=%d, id_ruolo=%d WHERE id=%d;",
+        $query = sprintf("UPDATE Utenti SET username='%s', nome='%s', cognome='%s', data_nascita='%s', id_gruppo=%d WHERE id=%d;",
                             $utente->getUsername(),
                             $utente->getNome(),
                             $utente->getCognome(),
                             $utente->getData_nascita(),
-                            $utente->getLocation_img(),
                             $utente->getId_gruppo(),
-                            $utente->getId_ruolo());
+                            $utente->getId());
 
         mysql_query($query);
         if(mysql_affected_rows()!=1)

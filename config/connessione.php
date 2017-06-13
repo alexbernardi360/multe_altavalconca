@@ -27,11 +27,11 @@ $array = csvToArray($filepath);
 
 $link = mysql_connect($array[0][0], $array[0][1], $array[0][2]);
 if(!$link)
-	die("Non connesso: ".mysql_error());
+    die("Non connesso: ".mysql_error());
 
 //make foo the current db
 $db_selected = mysql_select_db("DBmulte", $link);
 if(!$db_selected)
-	die("Database non agibile: ".mysql_error());
+    die("Database non agibile: ".mysql_error());
 
 ?>

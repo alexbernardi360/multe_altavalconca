@@ -67,5 +67,22 @@
                     $content = get_include_contents("../controller/utenti/templates/formpasswd.php");
                 }
                 break;
+        
+        case 'edit_profile':
+                $utente = TabellaUtente::getById($_SESSION['id']);
+                $content = get_include_contents("../controller/utenti/templates/form.php");
+                break;
+        
+        case 'update_profile':
+                $utente = new Utente();
+                $utente->setUsername($_POST['username']);
+                $utente->setNome($_POST['nome']);
+                $utente->setCognome($_POST['cognome']);
+                $utente->setData_nascita($_POST['data_nascita']);
+                $utente->setId_gruppo($_POST['id_gruppo']);
+                $utente->setId($_POST['id']);
+                $utente->update();
+                header('Location: ?controller=multa');
+                break;
     }
 ?>

@@ -22,49 +22,48 @@
  * 
  */
 
-	function get_include_contents($filename){
-		if(is_file($filename)){
-			extract($GLOBALS, EXTR_REFS);
-			ob_start();
-			include $filename;
-			return ob_get_clean();
-		}
-		return false;
-	}
+    function get_include_contents($filename){
+        if(is_file($filename)){
+            extract($GLOBALS, EXTR_REFS);
+            ob_start();
+            include $filename;
+            return ob_get_clean();
+        }
+        return false;
+    }
 
 
-	function csvToArray($filepath){
-		 setlocale(LC_ALL, 'it_IT.UTF-8');
-		 
-		 if(($handle = fopen($filepath, "r")) !== FALSE){
-			  $nn = 0;
-			  
-			  // legge una riga alla volta fino alla fine del file
-			  while(($data = fgetcsv($handle, 1000, ";")) !== FALSE){
-				   
-				   // numero di elementi presenti nella riga letta
-				   $num_elementi = count($data);
-				   
-				   // popolamento dell'array
-				   for($x = 0; $x < $num_elementi; $x++){
-						$csvarray[$nn][$x] = $data[$x];
-				   }
-				   
-				   $nn++;
-			  }
-			  
-			  fclose($handle);
-		}else
-			echo "File non trovato";
+    function csvToArray($filepath){
+        setlocale(LC_ALL, 'it_IT.UTF-8');
 
-		return $csvarray;
-	}
+        if(($handle = fopen($filepath, "r")) !== FALSE){
+            $nn = 0;
+
+            // legge una riga alla volta fino alla fine del file
+            while(($data = fgetcsv($handle, 1000, ";")) !== FALSE){
+
+                // numero di elementi presenti nella riga letta
+                $num_elementi = count($data);
+
+                // popolamento dell'array
+                for($x = 0; $x < $num_elementi; $x++){
+                    $csvarray[$nn][$x] = $data[$x];
+                }
+                $nn++;
+            }
+
+            fclose($handle);
+        }else
+            echo "File non trovato";
+
+        return $csvarray;
+    }
 
 
-	function dateInIt($str_data){
-		$array = explode("-", $str_data); 
-		$data_it = $array[2]."-".$array[1]."-".$array[0]; 
-		return $data_it; 
-	}
+    function dateInIt($str_data){
+        $array = explode("-", $str_data); 
+        $data_it = $array[2]."-".$array[1]."-".$array[0]; 
+        return $data_it; 
+    }
 
 ?>

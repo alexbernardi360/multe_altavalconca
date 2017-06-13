@@ -23,135 +23,135 @@
  */
 
 class TabellaMulte{
-	
-	public static function save($multa){
-		$query = sprintf("INSERT INTO Multe(data, valore, pagato, note, id_utente)
-							VALUES('%s', %F, %b, '%s', %d);",
-							$multa->getData(),
-							$multa->getValore(),
-							$multa->getPagato(),
-							$multa->getNote(),
-							$multa->getId_utente());
-							
-		mysql_query($query);
-		if(mysql_affected_rows()!=1)
-			print(mysql_error().' errore save()'.' - '.$query);
-	}
-	
-	public static function update($multa){
-		$query = sprintf("UPDATE Multe SET data='%s', valore=%F, pagato=%b, note='%s', id_utente=%d WHERE id=%d;",
-							$multa->getData(),
-							$multa->getValore(),
-							$multa->getPagato(),
-							$multa->getNote(),
-							$multa->getId_utente(),
-							$multa->getId());
-		mysql_query($query);
-		if(mysql_affected_rows()!=1){
-			print (mysql_error());
-		}
-	}
-	
-	public static function pagaTutto($id_utente){
-		$query = sprintf("UPDATE Multe SET pagato=1 WHERE id_utente='%d';", $id_utente);
-		mysql_query($query);
-		if(mysql_affected_rows() == 0){
-			print('errore pagamento');
-		}
-	}
-	
-	public static function paga($id){
-		$query = sprintf("UPDATE Multe SET pagato=1 WHERE id='%d';", $id);
-		mysql_query($query);
-		if(mysql_affected_rows()!=1){
-			print('errore pagamento');
-		}
-	}
-	
-	
-	public static function delete($multa){
-		$query = sprintf("DELETE FROM Multe WHERE id=%d;",$multa->getId());
-		mysql_query($query);
-	}	
-	
-	public static function getAll(){
-		$query = sprintf("SELECT * FROM Multe;");
-		$result = mysql_query($query);
-		$multe = array();
-		if($result){
-			while($row = mysql_fetch_array($result)){
-				$multa = new Multa();
-				$multa->setId($row["id"]);
-				$multa->setData($row["data"]);
-				$multa->setValore($row["valore"]);
-				$multa->setPagato($row["pagato"]);
-				$multa->setNote($row["note"]);
-				$multa->setId_utente($row["id_utente"]);
-				$multe[] = $multa;
-			}
-			return $multe;
-		}else
-			return null;
-	}
-	
-	public static function getById($id){
-		$query = sprintf("SELECT * FROM Multe WHERE id=%d;", $id);
-		$result = mysql_query($query);
-		if($result){
-			$row = mysql_fetch_array($result);
-			$multa = new Multa();
-			$multa->setId($row["id"]);
-			$multa->setData($row["data"]);
-			$multa->setValore($row["valore"]);
-			$multa->setPagato($row["pagato"]);
-			$multa->setNote($row["note"]);
-			$multa->setId_utente($row["id_utente"]);
-			
-			return $multa;
-		}else
-			return null;
-	}
-	
-	public static function getNonPagati(){
-		$query = sprintf("SELECT * FROM Multe WHERE pagato=0;");
-		$result = mysql_query($query);
-		$multe = array();
-		if($result){
-			while($row = mysql_fetch_array($result)){
-				$multa = new Multa();
-				$multa->setId($row["id"]);
-				$multa->setData($row["data"]);
-				$multa->setValore($row["valore"]);
-				$multa->setPagato($row["pagato"]);
-				$multa->setNote($row["note"]);
-				$multa->setId_utente($row["id_utente"]);
-				$multe[] = $multa;
-			}
-			return $multe;
-		}else
-			return null;
-	}
 
-	public static function getMulteById_utente($pagato, $id_utente){
-		$query = sprintf("SELECT * FROM Multe WHERE pagato=%d AND id_utente='%s';",
-	       		 	$pagato, $id_utente);
-		$result = mysql_query($query);
-		$multe = array();
-		if($result){
-			while($row = mysql_fetch_array($result)){
-				$multa = new Multa();
-				$multa->setId($row["id"]);
-				$multa->setData($row["data"]);
-				$multa->setValore($row["valore"]);
-				$multa->setPagato($row["pagato"]);
-				$multa->setNote($row["note"]);
-				$multa->setId_utente($row["id_utente"]);
-				$multe[] = $multa;
-			}
-			return $multe;
-		}else
-			return null;
-	}
-	
+    public static function save($multa){
+        $query = sprintf("INSERT INTO Multe(data, valore, pagato, note, id_utente)
+                            VALUES('%s', %F, %b, '%s', %d);",
+                            $multa->getData(),
+                            $multa->getValore(),
+                            $multa->getPagato(),
+                            $multa->getNote(),
+                            $multa->getId_utente());
+
+        mysql_query($query);
+        if(mysql_affected_rows()!=1)
+            print(mysql_error().' errore save()'.' - '.$query);
+    }
+
+    public static function update($multa){
+        $query = sprintf("UPDATE Multe SET data='%s', valore=%F, pagato=%b, note='%s', id_utente=%d WHERE id=%d;",
+                            $multa->getData(),
+                            $multa->getValore(),
+                            $multa->getPagato(),
+                            $multa->getNote(),
+                            $multa->getId_utente(),
+                            $multa->getId());
+        mysql_query($query);
+        if(mysql_affected_rows()!=1){
+            print (mysql_error());
+        }
+    }
+
+    public static function pagaTutto($id_utente){
+        $query = sprintf("UPDATE Multe SET pagato=1 WHERE id_utente='%d';", $id_utente);
+        mysql_query($query);
+        if(mysql_affected_rows() == 0){
+            print('errore pagamento');
+        }
+    }
+
+    public static function paga($id){
+        $query = sprintf("UPDATE Multe SET pagato=1 WHERE id='%d';", $id);
+        mysql_query($query);
+        if(mysql_affected_rows()!=1){
+            print('errore pagamento');
+        }
+    }
+
+
+    public static function delete($multa){
+        $query = sprintf("DELETE FROM Multe WHERE id=%d;",$multa->getId());
+        mysql_query($query);
+    }	
+
+    public static function getAll(){
+        $query = sprintf("SELECT * FROM Multe;");
+        $result = mysql_query($query);
+        $multe = array();
+        if($result){
+            while($row = mysql_fetch_array($result)){
+                $multa = new Multa();
+                $multa->setId($row["id"]);
+                $multa->setData($row["data"]);
+                $multa->setValore($row["valore"]);
+                $multa->setPagato($row["pagato"]);
+                $multa->setNote($row["note"]);
+                $multa->setId_utente($row["id_utente"]);
+                $multe[] = $multa;
+            }
+            return $multe;
+        }else
+            return null;
+    }
+
+    public static function getById($id){
+        $query = sprintf("SELECT * FROM Multe WHERE id=%d;", $id);
+        $result = mysql_query($query);
+        if($result){
+            $row = mysql_fetch_array($result);
+            $multa = new Multa();
+            $multa->setId($row["id"]);
+            $multa->setData($row["data"]);
+            $multa->setValore($row["valore"]);
+            $multa->setPagato($row["pagato"]);
+            $multa->setNote($row["note"]);
+            $multa->setId_utente($row["id_utente"]);
+
+            return $multa;
+        }else
+            return null;
+    }
+
+    public static function getNonPagati(){
+        $query = sprintf("SELECT * FROM Multe WHERE pagato=0;");
+        $result = mysql_query($query);
+        $multe = array();
+        if($result){
+            while($row = mysql_fetch_array($result)){
+                $multa = new Multa();
+                $multa->setId($row["id"]);
+                $multa->setData($row["data"]);
+                $multa->setValore($row["valore"]);
+                $multa->setPagato($row["pagato"]);
+                $multa->setNote($row["note"]);
+                $multa->setId_utente($row["id_utente"]);
+                $multe[] = $multa;
+            }
+            return $multe;
+        }else
+            return null;
+    }
+
+    public static function getMulteById_utente($pagato, $id_utente){
+        $query = sprintf("SELECT * FROM Multe WHERE pagato=%d AND id_utente='%s';",
+                            $pagato, $id_utente);
+        $result = mysql_query($query);
+        $multe = array();
+        if($result){
+            while($row = mysql_fetch_array($result)){
+                $multa = new Multa();
+                $multa->setId($row["id"]);
+                $multa->setData($row["data"]);
+                $multa->setValore($row["valore"]);
+                $multa->setPagato($row["pagato"]);
+                $multa->setNote($row["note"]);
+                $multa->setId_utente($row["id_utente"]);
+                $multe[] = $multa;
+            }
+            return $multe;
+        }else
+            return null;
+    }
+
 }
 ?>
